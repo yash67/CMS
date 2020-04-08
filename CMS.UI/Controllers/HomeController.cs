@@ -16,7 +16,7 @@ namespace Project_Layout_Demo.Controllers
         public ActionResult UserRegistration()
         {
             ViewBag.Message = "Your application description page.";
-
+            //Comment
             return View();
         }
         public ActionResult DealerRegistration()
