@@ -31,8 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,12 +50,92 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\CMSEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMSEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMSEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMSEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CMSEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_CityMaster.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_DealerCity.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_DealerInfo.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_DealerProductCategory.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_DealerRate.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_DealerService.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_OrderInfo.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_ProductCategoryMaster.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_RoleMaster.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_ServiceMaster.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_ShipmentDetails.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CMS_UserInfo.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\sysdiagram.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="Database\CMSEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CMSEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Database\" />
-    <Folder Include="Interface\" />
-    <Folder Include="Repository\" />
+    <None Include="App.Config" />
+    <None Include="Database\CMSEntities.edmx.diagram">
+      <DependentUpon>CMSEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\CMSEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CMSEntities.Context.cs</LastGenOutput>
+      <DependentUpon>CMSEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Database\CMSEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CMSEntities.edmx</DependentUpon>
+      <LastGenOutput>CMSEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

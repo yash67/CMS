@@ -120,6 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\User\CustomerAreaRegistration.cs" />
+    <Compile Include="Areas\Dealer\DealerAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,6 +263,8 @@
     <Content Include="img\blog\.DS_Store" />
     <Content Include="img\elements\_DS_Store" />
     <Content Include="img\feature\.DS_Store" />
+    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\Dealer\Views\web.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\isotope-min.js" />
@@ -299,6 +303,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Dealer\Controllers\" />
+    <Folder Include="Areas\Dealer\Models\" />
+    <Folder Include="Areas\Dealer\Views\Shared\" />
+    <Folder Include="Areas\User\Controllers\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="Areas\User\Views\Shared\" />
     <Folder Include="img\blog\latest-post\" />
     <Folder Include="Models\" />
   </ItemGroup>
