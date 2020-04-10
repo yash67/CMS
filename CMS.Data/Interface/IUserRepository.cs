@@ -10,5 +10,7 @@ namespace CMS.Data.Interface
     public interface IUserRepository
     {
         bool UserRegistration(CMS_UserInfo UserInfo);
+        bool CheckUserEmail(string chkemail);
+
     }
 }

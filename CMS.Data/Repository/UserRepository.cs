@@ -28,5 +28,17 @@ namespace CMS.Data.Repository
             return Status;
         }
 
+        public bool CheckUserEmail(string chkemail)
+        {
+            bool status = true;
+            var result = !cMSEntities.CMS_UserInfo.ToList().Exists(x => x.Email.Equals(chkemail, StringComparison.CurrentCultureIgnoreCase));
+            if (result == false)
+            {
+                status = false;
+            }
+            return status;
+            //return result.ToString();
+        }
+
     }
 }

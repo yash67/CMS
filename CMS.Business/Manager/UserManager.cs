@@ -32,5 +32,23 @@ namespace CMS.Business.Manager
             bool status = _userRepository.UserRegistration(dest);
             return status;
         }
+
+        public bool CheckUserEmail(string chkemail)
+        {
+            // UserViewModel userViewModel = new UserViewModel();
+            bool status = _userRepository.CheckUserEmail(chkemail);
+            //!userViewModel.Email.Equals(chkemail, StringComparison.CurrentCultureIgnoreCase);
+            return status;
+        }
+
+        //Functions
+        public string Hash(string value)
+        {
+            return Convert.ToBase64String(
+                System.Security.Cryptography.SHA256.Create()
+                .ComputeHash(Encoding.UTF8.GetBytes(value))
+                ).Replace('"', ' ');
+        }
+
     }
 }

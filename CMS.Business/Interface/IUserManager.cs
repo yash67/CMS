@@ -10,6 +10,9 @@ namespace CMS.Business.Interface
     public interface IUserManager
     {
         bool UserRegistration(UserViewModel UserInfo);
+        bool CheckUserEmail(string chkemail);
+        string Hash(string value);
+
 
     }
 }
