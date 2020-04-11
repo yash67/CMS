@@ -13,13 +13,13 @@ namespace Project_Layout_Demo.Controllers
             return View();
         }
 
-        public ActionResult UserRegistration()
-        {
-            ViewBag.Message = "Your application description page.";
-            //Comment
-            //comment2
-            return View();
-        }
+        //public ActionResult UserRegistration()
+        //{
+        //    ViewBag.Message = "Your application description page.";
+        //    //Comment
+        //    //comment2
+        //    return View();
+        //}
         public ActionResult DealerRegistration()
         {
             ViewBag.Message = "Your application description page.";

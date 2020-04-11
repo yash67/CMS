@@ -12,6 +12,7 @@ namespace CMS.Business.Interface
         bool UserRegistration(UserViewModel UserInfo);
         bool CheckUserEmail(string chkemail);
         string Hash(string value);
+        bool UpdateUser(string email);
 
 
     }

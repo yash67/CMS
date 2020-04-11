@@ -50,5 +50,13 @@ namespace CMS.Business.Manager
                 ).Replace('"', ' ');
         }
 
+        public bool UpdateUser(String email)
+        {
+            CMS_UserInfo userInfo = _userRepository.GetUser(email);
+            userInfo.IsActive = true;
+            bool status = _userRepository.UpdateUser(userInfo);
+            return status;
+        }
+
     }
 }

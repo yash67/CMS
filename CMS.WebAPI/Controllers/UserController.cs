@@ -50,5 +50,16 @@ namespace CMS.WebAPI.Controllers
             return _userManager.Hash(password);
         }
 
+        [HttpGet]
+        public IHttpActionResult UpdateUser(string Email)
+        {
+            bool status = _userManager.UpdateUser(Email);
+            if (status == false)
+            {
+                return BadRequest();
+            }
+            return Ok(status);
+        }
+
     }
 }

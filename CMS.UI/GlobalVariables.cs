@@ -10,7 +10,7 @@ namespace Project_Layout_Demo
 {
     public static class GlobalVariables
     {
-        //string baseUrl = "http://localhost:62357/";
+        //string baseUrl = "http://localhost:49261/";
 
         public static HttpClient client = new HttpClient();
 

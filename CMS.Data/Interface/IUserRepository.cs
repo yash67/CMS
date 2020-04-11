@@ -11,6 +11,9 @@ namespace CMS.Data.Interface
     {
         bool UserRegistration(CMS_UserInfo UserInfo);
         bool CheckUserEmail(string chkemail);
+        bool UpdateUser(CMS_UserInfo UserInfo);
+        CMS_UserInfo GetUser(String id);
+
 
     }
 }

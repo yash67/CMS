@@ -103,9 +103,9 @@
                 <div class="card-body register-card-body">
                     <p class="login-box-msg">Register a new membership</p>
 
-                    <form action="../../index.html" method="post">
+                    <form action="/User/User/Registration" method="post">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="First name">
+                            <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="First name">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Last name">
+                            <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Last name">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="Email" required="" onkeyup="chkemail()" placeholder="Email">
+                            <input type="text" class="form-control" id="Email" name="Email" required="" onkeyup="chkemail()" placeholder="Email">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -131,7 +131,7 @@
                             @Html.ValidationMessage("Exits", new { @class = "text-danger text-color" })
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Password">
+                            <input type="Password" class="form-control" id="Password" name="Password" placeholder="Password">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="Retype password">
+                            <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" placeholder="Retype password">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="MobileNo">
+                            <input type="text" class="form-control"  id="MobileNo" name="MobileNo"  placeholder="MobileNo">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -842,7 +842,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="~/Scripts/mail-script.js"></script>
     <script src="~/Scripts/custom.js"></script>
-    <script>
+    @*<script>
          function chkemail() {
             var emailid = $("#Email").val();
             var BaseUrl = '@System.Configuration.ConfigurationManager.AppSettings["APIUrl"]';
@@ -864,7 +864,7 @@
                     }
                 }
             });
-    </script>
+    </script>*@
 </body>
 
 </html>

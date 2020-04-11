@@ -27,8 +27,8 @@ namespace CMS.Data.Database
         public string Email { get; set; }
         public string Password { get; set; }
         public string MobileNo { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     

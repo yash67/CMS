@@ -12,7 +12,7 @@ namespace CMS.BusinessEntities.ViewModel
     {
 
         public long UserId { get; set; }
-       // public long RoleId { get; set; }
+        public long RoleId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -21,8 +21,8 @@ namespace CMS.BusinessEntities.ViewModel
         public string ConfirmPassword { get; set; }
         public string MobileNo { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
 
     }

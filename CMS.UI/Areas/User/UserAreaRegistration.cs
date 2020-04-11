@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace Project_Layout_Demo.Areas.Customer
+namespace Project_Layout_Demo.Areas.User
 {
-    public class CustomerAreaRegistration : AreaRegistration 
+    public class UserAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "Customer";
+                return "User";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Customer_default",
-                "Customer/{controller}/{action}/{id}",
+                "User_default",
+                "User/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

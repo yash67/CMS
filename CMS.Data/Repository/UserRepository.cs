@@ -2,6 +2,7 @@
 using CMS.Data.Interface;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,22 @@ namespace CMS.Data.Repository
             }
             return status;
             //return result.ToString();
+        }
+        public bool UpdateUser(CMS_UserInfo UserInfo)
+        {
+            bool status = false;
+            cMSEntities.Entry(UserInfo).State = EntityState.Modified;
+            if (cMSEntities.SaveChanges() > 0)
+            {
+                status = true;
+            }
+            return status;
+        }
+
+        public CMS_UserInfo GetUser(string email)
+        {
+            CMS_UserInfo user = cMSEntities.CMS_UserInfo.FirstOrDefault(u => u.Email == email);
+            return user;
         }
 
     }
