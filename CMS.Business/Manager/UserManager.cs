@@ -58,5 +58,12 @@ namespace CMS.Business.Manager
             return status;
         }
 
+        public CMS_UserInfo AuthorizeUser(string Email, string Password)
+        {
+            CMS_UserInfo status = _userRepository.AuthorizeUser(Email, Password);
+            return status;
+        }
+
+
     }
 }

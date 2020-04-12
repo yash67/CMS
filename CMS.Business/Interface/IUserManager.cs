@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CMS.BusinessEntities.ViewModel;
+using CMS.Data.Database;
 
 namespace CMS.Business.Interface
 {
@@ -13,7 +14,7 @@ namespace CMS.Business.Interface
         bool CheckUserEmail(string chkemail);
         string Hash(string value);
         bool UpdateUser(string email);
-
+        CMS_UserInfo AuthorizeUser(string Email, string Password);
 
     }
 }

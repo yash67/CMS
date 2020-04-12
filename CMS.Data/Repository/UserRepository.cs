@@ -56,6 +56,18 @@ namespace CMS.Data.Repository
             CMS_UserInfo user = cMSEntities.CMS_UserInfo.FirstOrDefault(u => u.Email == email);
             return user;
         }
-
+        public CMS_UserInfo AuthorizeUser(string Email, string Password)
+        {
+            //bool status = false;
+            //var result = cMSEntities.CMS_UserInfo.ToList().Exists(x => x.Email.Equals(Email, StringComparison.CurrentCultureIgnoreCase)
+            //                 && x.Password.Equals(Password, StringComparison.CurrentCultureIgnoreCase));
+            CMS_UserInfo result = cMSEntities.CMS_UserInfo.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true).FirstOrDefault();
+            //if (result != null)
+            //{
+            //    status = true;
+            //}
+            return result;
+        }
+        
     }
 }

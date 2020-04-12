@@ -19,6 +19,7 @@ namespace CMS.WebAPI
 
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IUserManager, UserManager>();
+            container.RegisterType<ICityManager, CityManager>();
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

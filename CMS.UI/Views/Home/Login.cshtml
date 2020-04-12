@@ -104,10 +104,10 @@
                 <div class="card-body register-card-body">
                     <p class="login-box-msg">Login Here</p>
 
-                    <form action="../../index.html" method="post">
+                    <form action="/Home/Login" method="post">
 
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="text" class="form-control" id="Email" name="Email" placeholder="Email">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
@@ -115,24 +115,24 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Password">
+                            <input type="text" class="form-control" id="Password" name="Password" placeholder="Password">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
                         </div>
-                       
-                                <div class=" input-group mb-3" >
-                                    <select class="form-control " placeholder="Choose Role">
-                                        <option>Dealer</option>
-                                        <option>User</option>
-                                    </select>
-                                </div>
-                         
 
-                            <div class="row justify-content-center">
-                                @*<div class="col-8">
+                        <div class=" input-group mb-3">
+                            <select class="form-control " id="roletype" name="roletype" placeholder="Choose Role">
+                                <option value="2">Dealer</option>
+                                <option value="3">User</option>
+                            </select>
+                        </div>
+
+
+                        <div class="row justify-content-center">
+                            @*<div class="col-8">
                     <div class="icheck-primary">
                         <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                         <label for="agreeTerms">
@@ -140,27 +140,28 @@
                         </label>
                     </div>
                 </div>*@
-                                <!-- /.col -->
-                                <div class="col-4">
-                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                </div>
-                                <!-- /.col -->
+                            <!-- /.col -->
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-primary btn-block">Login</button>
                             </div>
+                            <!-- /.col -->
+                        </div>
                     </form>
 
                     @*<div class="social-auth-links text-center">
-                            <p>- OR -</p>
-                            <a href="#" class="btn btn-block btn-primary">
-                                <i class="fab fa-facebook mr-2"></i>
-                                Sign up using Facebook
-                            </a>
-                            <a href="#" class="btn btn-block btn-danger">
-                                <i class="fab fa-google-plus mr-2"></i>
-                                Sign up using Google+
-                            </a>
-                        </div>*@
+            <p>- OR -</p>
+            <a href="#" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i>
+                Sign up using Facebook
+            </a>
+            <a href="#" class="btn btn-block btn-danger">
+                <i class="fab fa-google-plus mr-2"></i>
+                Sign up using Google+
+            </a>
+        </div>*@
 
-                    <a href="./UserRegistration" class="text-center ">Don't Have an Account? Register Here!</a>
+                    <a href="/User/User/Registration" class="text-center ">Don't Have an Account? Register Here!</a><br />
+                    @*<a href="./ForgotPassword" class="text-center ">Forgot Password? </a>*@
                 </div>
                 <!-- /.form-box -->
             </div><!-- /.card -->

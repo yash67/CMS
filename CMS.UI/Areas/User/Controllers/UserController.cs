@@ -29,7 +29,8 @@ namespace Project_Layout_Demo.Areas.User.Controllers
             HttpResponseMessage Responce = await GlobalVariables.client.GetAsync("api/User/CheckUserEmail?chkemail=" + userViewModel.Email);
             if (Responce.IsSuccessStatusCode)
             {              
-                userViewModel.Password = await hash(userViewModel.Password);//.ToString().Replace('"','A'));  
+                userViewModel.Password = await hash(userViewModel.Password);
+                userViewModel.Password.Replace('+', ' '); //.ToString().Replace('"','A'));  
                 userViewModel.CreatedDate = DateTime.Now;
                 userViewModel.RoleId = 3;
                 var stringContent = new StringContent(JsonConvert.SerializeObject(userViewModel), Encoding.UTF8, "application/json");
@@ -52,7 +53,6 @@ namespace Project_Layout_Demo.Areas.User.Controllers
             }
             return View("Registration", userViewModel);
         }
-
 
         public async Task<string> hash(string value)
         {

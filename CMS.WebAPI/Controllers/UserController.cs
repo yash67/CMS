@@ -1,5 +1,6 @@
 ﻿using CMS.Business.Interface;
 using CMS.BusinessEntities.ViewModel;
+using CMS.Data.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,5 +62,34 @@ namespace CMS.WebAPI.Controllers
             return Ok(status);
         }
 
+        [HttpGet]
+        public IHttpActionResult AuthorizeUser(string Email, string Password)
+        {
+            Password.ToString().Trim('"');
+            if (Email == null)
+            {
+                return BadRequest("invalid data");
+            }
+            else
+            {
+                CMS_UserInfo cMS_UserInfo = _userManager.AuthorizeUser(Email, Password);
+                if (cMS_UserInfo != null)
+                {
+                    return Ok(cMS_UserInfo);
+                }
+                return NotFound();
+            }
+            //var hasepassword= _userManager.Hash(Password);
+            //var authorize = _userManager.AuthorizeUser(Email, Password);
+            //if (authorize == false)
+            //{
+            //    return BadRequest();
+            //}
+            //else
+            //{
+            //    return Ok(authorize);
+            //}
+        }
+      
     }
 }

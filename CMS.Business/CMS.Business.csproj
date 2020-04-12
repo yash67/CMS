@@ -65,7 +65,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\ICityManager.cs" />
     <Compile Include="Interface\IUserManager.cs" />
+    <Compile Include="Manager\CityManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityResolverHelper\UnityResolverHelper.cs" />

@@ -15,6 +15,7 @@ namespace CMS.Business.UnityResolverHelper
         protected override void Initialize()
         {
             Container.RegisterType<IUserRepository, UserRepository>();
+            Container.RegisterType<ICityRepository, CityRepository>();
 
         }
     }

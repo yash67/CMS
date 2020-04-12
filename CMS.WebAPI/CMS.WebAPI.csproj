@@ -175,6 +175,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -277,6 +278,10 @@
     <ProjectReference Include="..\CMS.Common\CMS.Common.csproj">
       <Project>{08530ac6-9c1e-4a10-a950-ea80f2bf0108}</Project>
       <Name>CMS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CMS.Data\CMS.Data.csproj">
+      <Project>{730610F1-CF59-415F-BFD4-87707D53F828}</Project>
+      <Name>CMS.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

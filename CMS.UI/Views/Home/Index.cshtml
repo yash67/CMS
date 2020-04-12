@@ -62,7 +62,7 @@
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Start Shipping</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                @Html.ActionLink("Register as User", "Registration",new { Area= "User", Controller = "User"},null)
+                                                @Html.ActionLink("Register as User", "Registration",new { Area= "User", Controller = "User",@class="nav-link"},null)
                                                 @*<a class="nav-link" href="@Url.Action("Registration", "User",new { Area = "User" })">Register as User</a>*@
                                             </li>
                                             <li class="nav-item">
@@ -157,16 +157,20 @@
                                         </div> -->
 
                                         <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label for="countryOfOrigin">Form</label>
-                                                <input type="text" class="form-control" id="countryOfOrigin" placeholder="Enter country of origin" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter country of origin'" />
+                                            <div class="form-group ">
+                                                <label for="CityOrigin">From</label>
+                                                @*<input type="text" class="form-control" id="countryOfOrigin" placeholder="Enter country of origin" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter country of origin'" />*@
+                                                @Html.DropDownList("From",new SelectList(ViewBag.Cities, "CityId", "CityName"),"--Select--", new { @class = "form-control" })
+
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="destination">To</label>
-                                                <input type="text" class="form-control" id="destination" placeholder="Enter destination" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter destination'" />
+                                                <label for="CityDestination">To</label>
+                                                @*<input type="text" class="form-control" id="destination" placeholder="Enter destination" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter destination'" />*@
+                                                @Html.DropDownList("To", new SelectList(ViewBag.Cities, "CityId", "CityName"), "--Select--")
+
                                             </div>
                                         </div>
                                         <div class="col-lg-4">

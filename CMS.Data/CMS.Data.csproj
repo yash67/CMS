@@ -104,8 +104,10 @@
     <Compile Include="Database\sysdiagram.cs">
       <DependentUpon>CMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interface\ICityRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CityRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup />
