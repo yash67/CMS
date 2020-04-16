@@ -104,13 +104,24 @@
     <Compile Include="Database\sysdiagram.cs">
       <DependentUpon>CMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interface\ICategoryRepository.cs" />
     <Compile Include="Interface\ICityRepository.cs" />
+    <Compile Include="Interface\IDealerRepository.cs" />
+    <Compile Include="Interface\IServiceRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
+    <Compile Include="Repository\DealerRepository.cs" />
+    <Compile Include="Repository\ServiceRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CMS.BusinessEntities\CMS.BusinessEntities.csproj">
+      <Project>{d4af1764-eea7-4b2e-85fb-5c6003712d9b}</Project>
+      <Name>CMS.BusinessEntities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Database\CMSEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

@@ -26,11 +26,11 @@ namespace CMS.Data.Database
         public long ServiceId { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     
-        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CMS_DealerRate> CMS_DealerRate { get; set; }
         public virtual CMS_ServiceMaster CMS_ServiceMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CMS_ShipmentDetails> CMS_ShipmentDetails { get; set; }
+        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
     }
 }

@@ -7,7 +7,6 @@
       <Diagram DiagramId="a258525b941b46a380a593254264ed52" Name="Diagram1">
         <EntityTypeShape EntityType="CMSDataEntities.CMS_CityMaster" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CMSDataEntities.CMS_DealerCity" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CMSDataEntities.CMS_DealerInfo" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CMSDataEntities.CMS_DealerProductCategory" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CMSDataEntities.CMS_DealerRate" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CMSDataEntities.CMS_DealerService" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
@@ -19,12 +18,6 @@
         <EntityTypeShape EntityType="CMSDataEntities.CMS_UserInfo" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CMSDataEntities.sysdiagram" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerCity_CMS_CityMaster" ManuallyRouted="false" />
-        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerCity_CMS_DealerInfo" ManuallyRouted="false" />
-        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerInfo_CMS_RoleMaster" ManuallyRouted="false" />
-        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_DealerInfo" ManuallyRouted="false" />
-        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerInfo" ManuallyRouted="false" />
-        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerService_CMS_DealerInfo" ManuallyRouted="false" />
-        <AssociationConnector Association="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerInfo" ManuallyRouted="false" />
         <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster" ManuallyRouted="false" />
         <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerProductCategory" ManuallyRouted="false" />
         <AssociationConnector Association="CMSDataEntities.FK_CMS_ShipmentDetails_CMS_DealerProductCategory" ManuallyRouted="false" />
@@ -34,6 +27,13 @@
         <AssociationConnector Association="CMSDataEntities.FK_CMS_OrderInfo_CMS_UserInfo" ManuallyRouted="false" />
         <AssociationConnector Association="CMSDataEntities.FK_CMS_ShipmentDetails_CMS_OrderInfo" ManuallyRouted="false" />
         <AssociationConnector Association="CMSDataEntities.FK_CMS_UserInfo_CMS_RoleMaster" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CMSDataEntities.CMS_DealerInfo" Width="1.5" PointX="3" PointY="7.75" />
+        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerCity_CMS_DealerInfo" />
+        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerInfo_CMS_RoleMaster" />
+        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_DealerInfo" />
+        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerInfo" />
+        <AssociationConnector Association="CMSDataEntities.FK_CMS_DealerService_CMS_DealerInfo" />
+        <AssociationConnector Association="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -116,7 +116,7 @@
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-12">
                     <div class="estimated-cost">
-                        <form class="form-wrap" action="#">
+                        <form class="form-wrap" action="/User/User/QuoteList" method="post">
                             <nav>
                                 <div class="nav nav-tabs justify-content-md-start justify-content-center" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="nav-getEstimation-tab" data-toggle="tab" href="#nav-getEstimation" role="tab" aria-controls="nav-getEstimation" aria-selected="true">Get Quote</a>
@@ -128,39 +128,13 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-getEstimation" role="tabpanel" aria-labelledby="nav-getEstimation-tab">
                                     <div class="row">
-                                        <!-- <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="firstName">First name</label>
-                                                <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" placeholder="Enter first name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter first name'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="lastName">Last name</label>
-                                                <input type="text" class="form-control" id="lastName" placeholder="Enter last name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter last name'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="emailAddress">Email Address</label>
-                                                <input type="email" class="form-control" id="emailAddress" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="cargoType">Cargo Type</label>
-                                                <input type="text" class="form-control" id="cargoType" placeholder="Enter cargo type" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter cargo type'" />
-                                            </div>
-                                        </div> -->
+                                       
 
                                         <div class="col-lg-6">
                                             <div class="form-group ">
                                                 <label for="CityOrigin">From</label>
                                                 @*<input type="text" class="form-control" id="countryOfOrigin" placeholder="Enter country of origin" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter country of origin'" />*@
-                                                @Html.DropDownList("From",new SelectList(ViewBag.Cities, "CityId", "CityName"),"--Select--", new { @class = "form-control" })
+                                                @Html.DropDownList("From",new SelectList(ViewBag.Cities, "CityId", "CityName"),"--Select--")
 
                                             </div>
                                         </div>
@@ -176,31 +150,27 @@
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="weight">Weight</label>
-                                                <input type="text" class="form-control" id="weight" placeholder="Enter weight" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter weight'" />
+                                                <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter weight" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter weight'" />
                                             </div>
                                         </div>
 
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label for="quantity">Product Type</label>
-                                                <input type="text" class="form-control" id="quantity" placeholder="Enter quantity" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter quantity'" />
+                                                <label for="quantity">Category Type</label>
+                                                @*<input type="text" class="form-control" id="quantity" placeholder="Enter quantity" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter quantity'" />*@
+                                                @Html.DropDownList("Category", new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"), "--Select--")
+
                                             </div>
                                         </div>
-
-
+                                        
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="width">Service Type</label>
-                                                <input type="text" class="form-control" id="width" placeholder="Enter width" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter width'" />
+                                                @*<input type="text" class="form-control" id="width" placeholder="Enter width" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter width'" />*@
+                                                @Html.DropDownList("Service", new SelectList(ViewBag.Services, "ServiceId", "ServiceName"), "--Select--")
+
                                             </div>
                                         </div>
-
-                                        <!-- <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label for="height">Height</label>
-                                                <input type="text" class="form-control" id="height" placeholder="Enter height" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter height'" />
-                                            </div>
-                                        </div>-->
                                         <div class="col-lg-12 mt-4">
                                             <div class="text-center confirm_btn_box">
                                                 <button class="main_btn text-uppercase">Request a Quote</button>
@@ -212,69 +182,7 @@
 
                                 <div class="tab-pane fade" id="nav-trackShipment" role="tabpanel" aria-labelledby="nav-trackShipment-tab">
                                     <div class="row">
-                                        <!-- <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="firstName2">First name</label>
-                                                <input type="text" class="form-control" id="firstName2" aria-describedby="emailHelp" placeholder="Enter first name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter first name'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="lastName2">Last name</label>
-                                                <input type="text" class="form-control" id="lastName2" placeholder="Enter last name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter last name'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="emailAddress2">Email Address</label>
-                                                <input type="email" class="form-control" id="emailAddress2" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="cargoType2">Cargo Type</label>
-                                                <input type="text" class="form-control" id="cargoType2" placeholder="Enter cargo type" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter cargo type'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="countryOfOrigin2">Country of Origin</label>
-                                                <input type="text" class="form-control" id="countryOfOrigin2" placeholder="Enter country of origin" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter country of origin'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label for="destination2">Destination</label>
-                                                <input type="text" class="form-control" id="destination2" placeholder="Enter destination" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter destination'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label for="quantity2">Quantity</label>
-                                                <input type="text" class="form-control" id="quantity2" placeholder="Enter quantity" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter quantity'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label for="weight2">Weight</label>
-                                                <input type="text" class="form-control" id="weight2" placeholder="Enter weight" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter weight'" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <label for="width2">Width</label>
-                                                <input type="text" class="form-control" id="width2" placeholder="Enter width" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter width'" />
-                                            </div>
-                                        </div> -->
-                                            
+                                       
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="height2">Track ID</label>
@@ -283,7 +191,7 @@
                                         </div>
                                         <div class="col-lg-12 mt-4">
                                             <div class="text-center confirm_btn_box">
-                                                <button class="main_btn text-uppercase">Request a Quote</button>
+                                                <button class="main_btn text-uppercase">Track</button>
                                             </div>
                                         </div>
                                     </div>

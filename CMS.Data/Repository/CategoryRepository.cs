@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace CMS.Data.Repository
 {
-    public class CityRepository : ICityRepository
+    public class CategoryRepository : ICategoryRepository
     {
         private CMSEntities cMSEntities;
-        public CityRepository()
+        public CategoryRepository()
         {
             cMSEntities = new CMSEntities();
         }
-        public List<CMS_CityMaster> GetCities()
+        public List<CMS_ProductCategoryMaster> GetCategories()
         {
-            List<CMS_CityMaster> cities = cMSEntities.CMS_CityMaster.ToList();
-            return cities;
+            List<CMS_ProductCategoryMaster> Categories= cMSEntities.CMS_ProductCategoryMaster.ToList();
+            return Categories;
         }
     }
 }

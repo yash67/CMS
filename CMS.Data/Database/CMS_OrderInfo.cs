@@ -39,9 +39,9 @@ namespace CMS.Data.Database
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
         public virtual CMS_UserInfo CMS_UserInfo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CMS_ShipmentDetails> CMS_ShipmentDetails { get; set; }
+        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
     }
 }

@@ -278,6 +278,7 @@
     <Content Include="Areas\User\Views\User\Registration.cshtml" />
     <Content Include="Areas\User\Views\User\Verify.cshtml" />
     <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\User\Views\User\QuoteList.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\isotope-min.js" />
@@ -318,6 +319,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Dealer\Controllers\" />
     <Folder Include="Areas\Dealer\Models\" />
+    <Folder Include="Areas\Dealer\Views\Dealer\" />
     <Folder Include="Areas\Dealer\Views\Shared\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="img\blog\latest-post\" />
