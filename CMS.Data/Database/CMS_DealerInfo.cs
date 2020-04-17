@@ -35,7 +35,7 @@ namespace CMS.Data.Database
         public int Pincode { get; set; }
         public string MobileNo { get; set; }
         public string RegistrationNo { get; set; }
-        public int Status { get; set; }
+        public bool IsActive { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }

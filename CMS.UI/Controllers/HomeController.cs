@@ -26,6 +26,28 @@ namespace Project_Layout_Demo.Controllers
                 
             }
             ViewBag.Cities = cities;
+            string addressurl2 = "api/Category/GetCategories";
+            List<CategoryViewModel> Categories = new List<CategoryViewModel>();
+            HttpResponseMessage Res2 = await GlobalVariables.client.GetAsync(addressurl2);
+            if (Res2.IsSuccessStatusCode)
+            {
+                var MainMEnuResponse = Res2.Content.ReadAsStringAsync().Result;
+                Categories = JsonConvert.DeserializeObject<List<CategoryViewModel>>(MainMEnuResponse);
+
+            }
+            ViewBag.Categories = Categories;
+            TempData["Categories1"] = Categories;
+
+            string addressurl3 = "api/Service/GetServices";
+            List<ServiceViewModel> Services = new List<ServiceViewModel>();
+            HttpResponseMessage Res3 = await GlobalVariables.client.GetAsync(addressurl3);
+            if (Res3.IsSuccessStatusCode)
+            {
+                var MainMEnuResponse = Res3.Content.ReadAsStringAsync().Result;
+                Services = JsonConvert.DeserializeObject<List<ServiceViewModel>>(MainMEnuResponse);
+
+            }
+            ViewBag.Services=Services;
             return View();
         }
 

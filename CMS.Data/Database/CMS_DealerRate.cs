@@ -23,8 +23,8 @@ namespace CMS.Data.Database
         public decimal PerKgPrice { get; set; }
         public decimal PerKmPrice { get; set; }
     
-        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
         public virtual CMS_DealerProductCategory CMS_DealerProductCategory { get; set; }
         public virtual CMS_DealerService CMS_DealerService { get; set; }
+        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
     }
 }

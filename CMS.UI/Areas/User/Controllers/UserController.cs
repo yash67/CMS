@@ -16,6 +16,35 @@ namespace Project_Layout_Demo.Areas.User.Controllers
     public class UserController : Controller
     {
         private SendEmail sendEmail = new SendEmail();
+
+        [HttpPost]
+        public async Task<ActionResult> QuoteList(FormCollection collection)
+        {
+            long From = Convert.ToInt64(collection["From"]);
+            long To = Convert.ToInt64(collection["To"]);
+            long CategoryId = Convert.ToInt64(collection["Category"]);
+            long ServiceId = Convert.ToInt64(collection["Service"]);
+            decimal Weight = Convert.ToDecimal(collection["weight"]);
+            //ViewBag.Category = Category;
+
+            string addressurl = "api/Dealer/GetDealerCompanyList?From=" + From + "&To=" + To + "&DealerProductId=" + CategoryId + "&DealerServiceId=" + ServiceId;
+            HttpResponseMessage Res = await GlobalVariables.client.GetAsync(addressurl);
+            List<DealerViewModel> dealers = new List<DealerViewModel>();
+            if (Res.IsSuccessStatusCode)
+            {
+                var MainMEnuResponse = Res.Content.ReadAsStringAsync().Result;
+                dealers = JsonConvert.DeserializeObject<List<DealerViewModel>>(MainMEnuResponse);
+
+            }
+            List<decimal> prices = new List<decimal>();
+            foreach(DealerViewModel dealer in dealers)
+            {
+                decimal price = dealer.PerCategoryPrice + dealer.PerServicePrice+dealer.PerKmPrice+dealer.PerKgPrice*Weight;
+                prices.Add(price);
+            }
+            TempData["Price"] = prices;
+            return View(dealers);
+        }
         [HttpGet]
         public ActionResult DashBoard()
         {

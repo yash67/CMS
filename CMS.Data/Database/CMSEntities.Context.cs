@@ -18,6 +18,8 @@ namespace CMS.Data.Database
         public CMSEntities()
             : base("name=CMSEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = true;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -27,7 +29,6 @@ namespace CMS.Data.Database
     
         public virtual DbSet<CMS_CityMaster> CMS_CityMaster { get; set; }
         public virtual DbSet<CMS_DealerCity> CMS_DealerCity { get; set; }
-        public virtual DbSet<CMS_DealerInfo> CMS_DealerInfo { get; set; }
         public virtual DbSet<CMS_DealerProductCategory> CMS_DealerProductCategory { get; set; }
         public virtual DbSet<CMS_DealerRate> CMS_DealerRate { get; set; }
         public virtual DbSet<CMS_DealerService> CMS_DealerService { get; set; }
@@ -38,5 +39,6 @@ namespace CMS.Data.Database
         public virtual DbSet<CMS_ShipmentDetails> CMS_ShipmentDetails { get; set; }
         public virtual DbSet<CMS_UserInfo> CMS_UserInfo { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<CMS_DealerInfo> CMS_DealerInfo { get; set; }
     }
 }

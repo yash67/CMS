@@ -17,8 +17,8 @@ namespace CMS.Data.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CMS_RoleMaster()
         {
-            this.CMS_DealerInfo = new HashSet<CMS_DealerInfo>();
             this.CMS_UserInfo = new HashSet<CMS_UserInfo>();
+            this.CMS_DealerInfo = new HashSet<CMS_DealerInfo>();
         }
     
         public long RoleId { get; set; }
@@ -27,8 +27,8 @@ namespace CMS.Data.Database
         public Nullable<bool> IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CMS_DealerInfo> CMS_DealerInfo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CMS_UserInfo> CMS_UserInfo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CMS_DealerInfo> CMS_DealerInfo { get; set; }
     }
 }

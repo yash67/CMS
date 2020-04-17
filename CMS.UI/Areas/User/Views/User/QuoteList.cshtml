@@ -1,15 +1,15 @@
-﻿
+﻿@model IEnumerable<CMS.BusinessEntities.ViewModel.DealerViewModel>
+
 @{
     Layout = null;
 }
 
-
-
 <!DOCTYPE html>
-<html lang="en">
 
+<html>
 <head>
-    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width" />
+    <title>QuoteList</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" href="~/img/favicon.png" type="image/png" />
@@ -27,9 +27,7 @@
     <link href="~/Content/responsive.css" rel="stylesheet" />
 
 </head>
-
 <body>
-    <!--================Header Menu Area =================-->
     <header class="header_area ">
 
         <div class="main_menu">
@@ -90,79 +88,238 @@
             </nav>
         </div>
     </header>
-    <!--================Header Menu Area =================-->
-    
-    <!--================ End CTA Area ================-->
-    <!--================ start footer Area =================-->
-    <footer class="footer-area section_gap">
+
+    <section class="quote-area ">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>About Us</h6>
-                        <p>
-                            If you own an Iphone, you’ve probably already worked out how much fun it is to use it to watch movies-it has that.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-5  col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>Newsletter</h6>
-                        <p>Stay update with our latest</p>
-                        <div class="" id="mc_embed_signup">
-                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-                                <input class="form-control" name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required="" type="email">
-                                <button class="click-btn btn btn-default"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                                </div>
-                                <div class="info"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-                    <div class="single-footer-widget">
-                        <h6>Follow Us</h6>
-                        <p>Let us be social</p>
-                        <div class="footer-social d-flex align-items-center">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
+            <div class="row justify-content-center text-left section-title-wrap">
+                <div class="col-lg-12 mt-4">
+                    <h2 class="text-white">
+                        Quotation Result <br>
+                    </h2>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="footer-text">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-getEstimation" role="tabpanel" aria-labelledby="nav-getEstimation-tab">
+                    <table class="table">
 
-                        Copyright &copy;
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved
+                        <tr>
+                            @*<th>
+                            @Html.DisplayNameFor(model => model.First().DealerId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().RoleId)
+                        </th>*@
+                            @*<th>
+                            @Html.DisplayNameFor(model => model.First().DealerName)
+                        </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().CompanyName)
+                            </th>
+                            @*<th>
+                            @Html.DisplayNameFor(model => model.First().Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Password)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().CompanyAreaName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().CompanyCityName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Pincode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().MobileNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().RegistrationNo)
+                        </th>*@
+                            <th>
+                                @Html.DisplayName("Category Type")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Service Type")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Price")
+                            </th>
+                            @*<th>
+                            @Html.DisplayNameFor(model => model.First().PerCategoryPrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().PerServicePrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().PerKgPrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().PerKmPrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().CategoryId)
+                        </th>*@
+                            @*<th>
+                            @Html.DisplayNameFor(model => model.First().CategoryName)
+                        </th>*@
+<th></th>
+                        </tr>
 
-                    </p>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @*<td>
+                                @Html.DisplayFor(modelItem => item.DealerId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RoleId)
+                            </td>*@
+                                @*<td>
+                                @Html.DisplayFor(modelItem => item.DealerName)
+                            </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyName)
+                                </td>
+                                <td>
+                                    @*@ViewBag.CategoryName*@
+                                    @Html.DisplayFor(modelItem => item.CategoryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ServiceName)
+                                </td>
+                                <td>
+                                   @foreach(var price in (IEnumerable<decimal>)TempData["Price"])
+                                   {
+                                       @price
+                                   }
+                                </td>
+                                @*<td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Password)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyAreaName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyCityName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pincode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MobileNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RegistrationNo)
+                            </td>*@
+                                @*<td>
+                                @Html.DisplayFor(modelItem => item.PerCategoryPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PerServicePrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PerKgPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PerKmPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryId)
+                            </td>*@
+                                @*<td>
+                                @Html.DisplayFor(modelItem => item.CategoryName)
+                            </td>*@
+                                <td>
+                                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+
+                                    <button class="main_btn text-uppercase" href="@Url.Action("","")" style="line-height:50px;padding: 0px 20px;">Book Now</button>
+
+                                </td>
+                                
+                            </tr>
+                        }
+
+                    </table>
                 </div>
             </div>
         </div>
-    </footer>
-    <!--================ End footer Area =================-->
-    <!--================ Optional JavaScript =================-->
-    <!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
-    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
-    <script src="~/Scripts/popper.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.nice-select.min.js"></script>
-    <script src="~/Scripts/isotope-min.js"></script>
-    <script src="~/Scripts/owl.carousel.min.js"></script>
-    <script src="~/Scripts/jquery.ajaxchimp.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="~/Scripts/mail-script.js"></script>
-    <script src="~/Scripts/custom.js"></script>
+    </section>
 
+
+
+            <footer class="footer-area section_gap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h6>About Us</h6>
+                                <p>
+                                    If you own an Iphone, you’ve probably already worked out how much fun it is to use it to watch movies-it has that.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5  col-md-6 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h6>Newsletter</h6>
+                                <p>Stay update with our latest</p>
+                                <div class="" id="mc_embed_signup">
+                                    <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+                                        <input class="form-control" name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required="" type="email">
+                                        <button class="click-btn btn btn-default"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                        <div style="position: absolute; left: -5000px;">
+                                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                        </div>
+                                        <div class="info"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                            <div class="single-footer-widget">
+                                <h6>Follow Us</h6>
+                                <p>Let us be social</p>
+                                <div class="footer-social d-flex align-items-center">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="footer-text">
+
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!--================ End footer Area =================-->
+            <!--================ Optional JavaScript =================-->
+            <!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
+            <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+            <script src="~/Scripts/popper.js"></script>
+            <script src="~/Scripts/bootstrap.min.js"></script>
+            <script src="~/Scripts/jquery.nice-select.min.js"></script>
+            <script src="~/Scripts/isotope-min.js"></script>
+            <script src="~/Scripts/owl.carousel.min.js"></script>
+            <script src="~/Scripts/jquery.ajaxchimp.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+            <script src="~/Scripts/mail-script.js"></script>
+            <script src="~/Scripts/custom.js"></script>
 </body>
-
 </html>
