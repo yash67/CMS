@@ -278,6 +278,11 @@
     <Content Include="Areas\User\Views\User\Registration.cshtml" />
     <Content Include="Areas\User\Views\User\Verify.cshtml" />
     <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\User\Views\User\DashBoard.cshtml" />
+    <Content Include="Areas\User\Views\User\QuoteList.cshtml" />
+    <Content Include="Areas\User\Views\User\AddressDetails.cshtml" />
+    <Content Include="Areas\User\Views\User\ShippingDetails.cshtml" />
+    <Content Include="Areas\User\Views\User\Tracking.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\isotope-min.js" />
