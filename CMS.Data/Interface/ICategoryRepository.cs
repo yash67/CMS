@@ -10,6 +10,5 @@ namespace CMS.Data.Interface
     public interface ICategoryRepository
     {
         List<CMS_ProductCategoryMaster> GetCategories();
-        CMS_ProductCategoryMaster GetCategory(long categoryid);
     }
 }

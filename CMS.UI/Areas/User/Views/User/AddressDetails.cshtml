@@ -1,15 +1,99 @@
-﻿@model CMS.BusinessEntities.ViewModel.UserViewModel
-
+﻿
 @{
-    Layout = "~/Areas/User/views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
 
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="~/img/favicon.png" type="image/png" />
+    <title>Courier Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/nice-select.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/style1.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+
+</head>
+
 <body>
-       <section class="quote-area ">
+    <!--================Header Menu Area =================-->
+    <header class="header_area ">
+
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg w-100">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="index.html">
+                        <img src="~/img/logofinal.png" alt="" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <div class="row w-100">
+                            <div class="col-lg-12 pr-lg-0">
+                                <ul class="nav navbar-nav ml-auto justify-content-end">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="@Url.Action("Index", "Home")#about">About</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="@Url.Action("Index", "Home")#services">Services</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="@Url.Action("Index", "Home")#contact">Contact</a>
+                                    </li>
+                                    <li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Menu</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Profile</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">My Orders</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Tracking</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Settings</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Logout</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================Header Menu Area =================-->
+    <!--================ End CTA Area ================-->
+
+
+    <section class="quote-area ">
         <div class="container">
             <div class="row justify-content-center text-left section-title-wrap">
                 <div class="col-lg-12 mt-4">
@@ -21,7 +105,7 @@
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-12">
                     <div class="estimated-cost">
-                        <form class="form-wrap" method="post" action="/User/User/AddressDetails">
+                        <form class="form-wrap" action="#">
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-getEstimation" role="tabpanel" aria-labelledby="nav-getEstimation-tab">
                                     <div class="row">
@@ -38,93 +122,92 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Name</label>
-                                                <input type="text" class="form-control" id="FromName" name="FromName" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'" />
-                                                
+                                                <input type="text" class="form-control" id="sendername" name="sendername" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'" />
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Name</label>
-                                                <input type="text" class="form-control" id="ToName" name="ToName" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'" />
+                                                <input type="text" class="form-control" id="recivername" name="recivername" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'" />
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Address</label>
-                                                <input type="text" class="form-control" id="FromAddressLine" name="FromAddressLine" placeholder="Enter Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Address'" />
+                                                <input type="text" class="form-control" id="senderaddress" name="senderaddress" placeholder="Enter Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Address'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Address</label>
-                                                <input type="text" class="form-control" id="ToAddressLine" name="ToAddressLine" placeholder="Enter Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Address'" />
+                                                <input type="text" class="form-control" id="reciveraddress" name="reciveraddress" placeholder="Enter Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Address'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Area Name</label>
-                                                <input type="text" class="form-control" id="FromAreaName" name="FromAreaName" placeholder="Enter Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Area'" />
+                                                <input type="text" class="form-control" id="senderarea" name="senderarea" placeholder="Enter Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Area'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Area Name</label>
-                                                <input type="text" class="form-control" id="ToAreaName" name="ToAreaName" placeholder="Enter Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Area'" />
+                                                <input type="text" class="form-control" id="reciverarea" name="reciverarea" placeholder="Enter Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Area'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> City</label>
-                                                <input type="text" class="form-control" id="FromCityName" name="FromCityName" placeholder="Enter City Name" value="@ViewBag.From" readonly="readonly" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter City Name'" />
+                                                <input type="text" class="form-control" id="sendercity" name="sendercity" placeholder="Enter City Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter City Name'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> City </label>
-                                                <input type="text" class="form-control" id="ToCityName" name="ToCityName" placeholder="Enter City Name" value="@ViewBag.To" readonly="readonly" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter City Name'" />
+                                                <input type="text" class="form-control" id="recivercity" name="recivercity" placeholder="Enter City Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter City Name'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Pincode</label>
-                                                <input type="text" class="form-control" id="FromPinCode" name="FromPinCode" placeholder="Enter Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Pincode'" />
+                                                <input type="text" class="form-control" id="senderpincode" name="senderpincode" placeholder="Enter Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Pincode'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Pincode</label>
-                                                <input type="text" class="form-control" id="ToPinCode" name="ToPinCode" placeholder="Enter Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Pincode'" />
+                                                <input type="text" class="form-control" id="reciverpincode" name="reciverpincode" placeholder="Enter Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Pincode'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> MobileNo</label>
-                                                <input type="text" class="form-control" id="FromMobileNo" name="FromMobileNo" placeholder="Enter Mobile No" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No'" />
+                                                <input type="text" class="form-control" id="sendermobile" name="sendermobile" placeholder="Enter Mobile No" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight">MobileNo</label>
-                                                <input type="text" class="form-control" id="ToMobileNo" name="ToMobileNo" placeholder="Enter Mobile No" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No'" />
+                                                <input type="text" class="form-control" id="recivermobile" name="recivermobile" placeholder="Enter Mobile No" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Email</label>
-                                                <input type="text" class="form-control" id="FromEmail" name="FromEmail" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" />
+                                                <input type="text" class="form-control" id="senderemail" name="senderemail" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="weight"> Email </label>
-                                                <input type="text" class="form-control" id="ToEmail" name="ToEmail" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" />
+                                                <input type="text" class="form-control" id="reciveremail" name="reciveremail" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" />
                                             </div>
                                         </div>
                                         <div class="col-lg-12 mt-4">
                                             <div class="text-center confirm_btn_box">
-                                                <button class="main_btn text-uppercase" >Next</button>
+                                                <button class="main_btn text-uppercase" href="@Url.Action("","")">Submit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +219,87 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+    <!--================ start footer Area =================-->
+    <footer class="footer-area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>About Us</h6>
+                        <p>
+                            If you own an Iphone, you’ve probably already worked out how much fun it is to use it to watch movies-it has that.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-5  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Newsletter</h6>
+                        <p>Stay update with our latest</p>
+                        <div class="" id="mc_embed_signup">
+                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+                                <input class="form-control" name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required="" type="email">
+                                <button class="click-btn btn btn-default"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                <div style="position: absolute; left: -5000px;">
+                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                </div>
+                                <div class="info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                    <div class="single-footer-widget">
+                        <h6>Follow Us</h6>
+                        <p>Let us be social</p>
+                        <div class="footer-social d-flex align-items-center">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="footer-text">
+
+                        Copyright &copy;
+                        <script>
+                                    document.write(new Date().getFullYear());
+                        </script> All rights reserved
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--================ End footer Area =================-->
+    <!--================ Optional JavaScript =================-->
+    <!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.nice-select.min.js"></script>
+    <script src="~/Scripts/isotope-min.js"></script>
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+    <script src="~/Scripts/jquery.ajaxchimp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="~/Scripts/mail-script.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+
 </body>
 
 </html>
-

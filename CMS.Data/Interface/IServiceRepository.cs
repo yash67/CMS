@@ -10,6 +10,5 @@ namespace CMS.Data.Interface
     public interface IServiceRepository
     {
         List<CMS_ServiceMaster> GetServices();
-        CMS_ServiceMaster GetService(long serviceid);
     }
 }

@@ -20,11 +20,5 @@ namespace CMS.Data.Repository
             List<CMS_ProductCategoryMaster> Categories= cMSEntities.CMS_ProductCategoryMaster.ToList();
             return Categories;
         }
-
-        public CMS_ProductCategoryMaster GetCategory(long categoryid)
-        {
-            CMS_ProductCategoryMaster Category = cMSEntities.CMS_ProductCategoryMaster.Find(categoryid);
-            return Category;
-        }
     }
 }

@@ -95,6 +95,9 @@
     <Compile Include="Database\CMS_ServiceMaster.cs">
       <DependentUpon>CMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\CMS_ShipmentDetails.cs">
+      <DependentUpon>CMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\CMS_UserInfo.cs">
       <DependentUpon>CMSEntities.tt</DependentUpon>
     </Compile>

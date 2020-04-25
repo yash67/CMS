@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using CMS.Business.Interface;
-using CMS.BusinessEntities.ViewModel;
+﻿using CMS.Business.Interface;
 using CMS.Data.Database;
 using CMS.Data.Interface;
 using System;
@@ -24,18 +22,6 @@ namespace CMS.Business.Manager
         {
             List<CMS_ProductCategoryMaster> Categories = _categoryRepository.GetCategories();
             return Categories;
-        }
-
-        public CategoryViewModel GetCategory(long categoryid)
-        {
-            var Category = _categoryRepository.GetCategory(categoryid);
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<CMS_ProductCategoryMaster, CategoryViewModel>();
-            });
-            IMapper mapper = config.CreateMapper();
-            var CategoryViewModel1 = mapper.Map<CMS_ProductCategoryMaster, CategoryViewModel>(Category);
-            return CategoryViewModel1;
         }
     }
 }

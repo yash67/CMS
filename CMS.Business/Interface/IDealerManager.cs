@@ -11,6 +11,5 @@ namespace CMS.Business.Interface
     public interface IDealerManager
     {
         List<DealerViewModel> GetDealerCompanyList(long From, long To, long DealerProductId, long DealerServiceId);
-        List<AddressDetailsViewModel> GetOrders();
     }
 }
