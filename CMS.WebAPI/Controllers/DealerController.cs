@@ -1,6 +1,6 @@
-﻿using CMS.BusinessEntities.ViewModel;
+﻿using CMS.Business.Interface;
+using CMS.BusinessEntities.ViewModel;
 using CMS.Data.Database;
-using CMS.Data.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +12,18 @@ namespace CMS.WebAPI.Controllers
 {
     public class DealerController : ApiController
     {
-        private IDealerRepository _dealerRepository;
+        private IDealerManager _dealerManager;
 
-        public DealerController(IDealerRepository dealerRepository)
+        public DealerController(IDealerManager dealerManager)
         {
-            _dealerRepository = dealerRepository;
+            _dealerManager = dealerManager;
         }
 
 
         [HttpGet]
         public IHttpActionResult GetDealerCompanyList(long From, long To, long DealerProductId, long DealerServiceId)
         {
-            List<DealerViewModel> DealerCompanies = _dealerRepository.GetDealerCompanyList(From,To,DealerProductId,DealerServiceId);
+            List<DealerViewModel> DealerCompanies = _dealerManager.GetDealerCompanyList(From,To,DealerProductId,DealerServiceId);
             if (DealerCompanies == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace CMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetOrders()
         {
-            List<AddressDetailsViewModel> Orders = _dealerRepository.GetOrders();
+            List<AddressDetailsViewModel> Orders = _dealerManager.GetOrders();
             if (Orders == null)
             {
                 return NotFound();
