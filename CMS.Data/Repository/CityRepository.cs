@@ -20,5 +20,11 @@ namespace CMS.Data.Repository
             List<CMS_CityMaster> cities = cMSEntities.CMS_CityMaster.ToList();
             return cities;
         }
+
+        public CMS_CityMaster GetCity(long cityid)
+        {
+            CMS_CityMaster city = cMSEntities.CMS_CityMaster.Find(cityid);
+            return city;
+        }
     }
 }

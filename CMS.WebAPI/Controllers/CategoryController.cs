@@ -1,4 +1,5 @@
 ﻿using CMS.Business.Interface;
+using CMS.BusinessEntities.ViewModel;
 using CMS.Data.Database;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,17 @@ namespace CMS.WebAPI.Controllers
                 return NotFound();
             }
             return Ok(Categories);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetCategory(long categoryid)
+        {
+            CategoryViewModel Category = _categoryManager.GetCategory(categoryid);
+            if (Category == null)
+            {
+                return NotFound();
+            }
+            return Ok(Category);
         }
     }
 }

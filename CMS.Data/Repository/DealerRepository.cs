@@ -49,5 +49,38 @@ namespace CMS.Data.Repository
             }
             return dealerViewModels;
         }
+
+        public List<AddressDetailsViewModel> GetOrders()
+        {
+            List<AddressDetailsViewModel> addressDetailsViewModels = new List<AddressDetailsViewModel>();
+            List<CMS_OrderInfo> Orders = CMSEntities.CMS_OrderInfo.ToList();
+            foreach(CMS_OrderInfo cMS_OrderInfo in Orders)
+            {
+                AddressDetailsViewModel addressDetailsViewModel = new AddressDetailsViewModel();
+                addressDetailsViewModel.OrderId = cMS_OrderInfo.OrderId;
+                addressDetailsViewModel.CreatedDate = cMS_OrderInfo.CreatedDate;
+                addressDetailsViewModel.FromName = cMS_OrderInfo.FromName;
+                addressDetailsViewModel.FromAddressLine = cMS_OrderInfo.FromAddressLine;
+                addressDetailsViewModel.FromAreaName = cMS_OrderInfo.FromAreaName;
+                addressDetailsViewModel.FromCityName = cMS_OrderInfo.FromCityName;
+                addressDetailsViewModel.FromPinCode = cMS_OrderInfo.FromPinCode;
+                addressDetailsViewModel.FromMobileNo = cMS_OrderInfo.FromMobileNo;
+                addressDetailsViewModel.FromEmail = cMS_OrderInfo.FromEmail;
+                addressDetailsViewModel.ToName = cMS_OrderInfo.ToName;
+                addressDetailsViewModel.ToAddressLine = cMS_OrderInfo.ToAddressLine;
+                addressDetailsViewModel.ToAreaName = cMS_OrderInfo.ToAreaName;
+                addressDetailsViewModel.ToCityName = cMS_OrderInfo.ToCityName;
+                addressDetailsViewModel.ToPinCode = cMS_OrderInfo.ToPinCode;
+                addressDetailsViewModel.ToMobileNo = cMS_OrderInfo.ToMobileNo;
+                addressDetailsViewModel.ToEmail = cMS_OrderInfo.ToEmail;
+                addressDetailsViewModel.PackageWeight = cMS_OrderInfo.PackageWeight;
+                addressDetailsViewModel.DealerProductId = cMS_OrderInfo.DealerProductId;
+                addressDetailsViewModel.DealerServiceId = cMS_OrderInfo.DealerServiceId;
+                addressDetailsViewModel.Price = cMS_OrderInfo.Price;
+
+                addressDetailsViewModels.Add(addressDetailsViewModel);
+            }
+            return addressDetailsViewModels;
+        }
     }
 }

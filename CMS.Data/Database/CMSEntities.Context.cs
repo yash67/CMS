@@ -29,16 +29,15 @@ namespace CMS.Data.Database
     
         public virtual DbSet<CMS_CityMaster> CMS_CityMaster { get; set; }
         public virtual DbSet<CMS_DealerCity> CMS_DealerCity { get; set; }
-        public virtual DbSet<CMS_DealerProductCategory> CMS_DealerProductCategory { get; set; }
         public virtual DbSet<CMS_DealerRate> CMS_DealerRate { get; set; }
-        public virtual DbSet<CMS_DealerService> CMS_DealerService { get; set; }
-        public virtual DbSet<CMS_OrderInfo> CMS_OrderInfo { get; set; }
         public virtual DbSet<CMS_ProductCategoryMaster> CMS_ProductCategoryMaster { get; set; }
         public virtual DbSet<CMS_RoleMaster> CMS_RoleMaster { get; set; }
         public virtual DbSet<CMS_ServiceMaster> CMS_ServiceMaster { get; set; }
-        public virtual DbSet<CMS_ShipmentDetails> CMS_ShipmentDetails { get; set; }
         public virtual DbSet<CMS_UserInfo> CMS_UserInfo { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<CMS_DealerInfo> CMS_DealerInfo { get; set; }
+        public virtual DbSet<CMS_OrderInfo> CMS_OrderInfo { get; set; }
+        public virtual DbSet<CMS_DealerService> CMS_DealerService { get; set; }
+        public virtual DbSet<CMS_DealerProductCategory> CMS_DealerProductCategory { get; set; }
     }
 }

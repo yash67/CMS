@@ -1,7 +1,14 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@model IEnumerable<CMS.BusinessEntities.ViewModel.AddressDetailsViewModel>
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,10 +26,10 @@
     <link href="~/Content/style1.css" rel="stylesheet" />
     <link href="~/Content/responsive.css" rel="stylesheet" />
 
-    @*@Styles.Render("~/Content/css")*@
-    @Scripts.Render("~/bundles/modernizr")
 </head>
+
 <body>
+    <!--================Header Menu Area =================-->
     <header class="header_area ">
 
         <div class="main_menu">
@@ -55,14 +62,29 @@
                                         <a class="nav-link" href="@Url.Action("Index", "Home")#contact">Contact</a>
                                     </li>
                                     <li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Set Up Business</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Add City</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Add Product Category</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Add Service Type</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Add Decide Rates</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Menu</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
                                                 <a class="nav-link" href="">Profile</a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="">My Orders</a>
-                                            </li>
+
                                             <li class="nav-item">
                                                 <a class="nav-link" href="">Tracking</a>
                                             </li>
@@ -72,8 +94,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        @*<a class="nav-link" href="#">Logout</a>*@
-                                        @Html.ActionLink("Logout", "Logout", new { Area= "User", Controller="User"}, new { @class= "nav-link" })
+                                        <a class="nav-link" href="#">Logout</a>
                                     </li>
 
                                 </ul>
@@ -84,12 +105,106 @@
             </nav>
         </div>
     </header>
-    @*<div class="container body-content">
-        @RenderBody()
-        <hr />
+    <!--================Header Menu Area =================-->
+    <!--================ End CTA Area ================-->
+    <section class="quote-area ">
+        <div class="container">
+            <div class="row justify-content-center text-left section-title-wrap">
+                <div class="col-lg-12 mt-4">
+                    <h2 class="text-white" style="text-align:center">
+                        Current Orders <br>
+                    </h2>
+                </div>
+            </div>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-getEstimation" role="tabpanel" aria-labelledby="nav-getEstimation-tab">
+                    <table class="table">
 
-    </div>*@
-    @RenderBody()
+                        <tr>
+
+                            <th>
+                                @Html.DisplayName("Order Id")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Sender Details")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Reciver Details")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Package Details")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Price")
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedDate)<br />
+                                    @Html.DisplayFor(modelItem => item.FromName)<br />
+                                    @Html.DisplayFor(modelItem => item.FromAddressLine)<br />
+                                    @Html.DisplayFor(modelItem => item.FromAreaName)<br />
+                                    @Html.DisplayFor(modelItem => item.FromCityName)<br />
+                                    @Html.DisplayFor(modelItem => item.FromPinCode)<br />
+                                    @Html.DisplayFor(modelItem => item.FromMobileNo)<br />
+                                    @Html.DisplayFor(modelItem => item.FromEmail)<br />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ToName)<br />
+                                    @Html.DisplayFor(modelItem => item.ToAddressLine)<br />
+                                    @Html.DisplayFor(modelItem => item.ToAreaName)<br />
+                                    @Html.DisplayFor(modelItem => item.ToCityName)<br />
+                                    @Html.DisplayFor(modelItem => item.ToPinCode)<br />
+                                    @Html.DisplayFor(modelItem => item.ToMobileNo)<br />
+                                    @Html.DisplayFor(modelItem => item.ToEmail)<br />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PackageWeight)<br />
+                                    @Html.DisplayFor(modelItem => item.DealerProductId)<br />
+                                    @Html.DisplayFor(modelItem => item.DealerServiceId)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    <a class="main_btn text-uppercase" style="line-height:50px;padding: 0px 20px;">Process Order</a>
+                                </td>
+                                @*<td>
+
+                                            <form method="post" action="/User/User/Details?dealerid=@item.DealerId">
+                                                <input type="hidden" id="price" name="price" value="@prices[i]" />
+                                                @*<a class="main_btn text-uppercase" style="line-height:50px;padding: 0px 20px;">Book Now</a>
+                                                <input type="submit" value="Book Now" class="main_btn text-uppercase" style="line-height:50px;padding: 0px 20px;" />
+                                            </form>
+                                        </td>
+
+                                    </tr>
+                                        {
+                                            i = i + 1;
+                                        }
+                                    }*@
+
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--================ start footer Area =================-->
     <footer class="footer-area section_gap">
         <div class="container">
             <div class="row">
@@ -144,7 +259,9 @@
             </div>
         </div>
     </footer>
-
+    <!--================ End footer Area =================-->
+    <!--================ Optional JavaScript =================-->
+    <!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/popper.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -156,8 +273,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="~/Scripts/mail-script.js"></script>
     <script src="~/Scripts/custom.js"></script>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 </body>
+
 </html>
