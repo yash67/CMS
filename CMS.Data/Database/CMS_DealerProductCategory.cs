@@ -18,7 +18,7 @@ namespace CMS.Data.Database
         public CMS_DealerProductCategory()
         {
             this.CMS_DealerRate = new HashSet<CMS_DealerRate>();
-            this.CMS_ShipmentDetails = new HashSet<CMS_ShipmentDetails>();
+            this.CMS_OrderInfo = new HashSet<CMS_OrderInfo>();
         }
     
         public long DealerProductId { get; set; }
@@ -26,11 +26,11 @@ namespace CMS.Data.Database
         public long CategoryId { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     
+        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
         public virtual CMS_ProductCategoryMaster CMS_ProductCategoryMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CMS_DealerRate> CMS_DealerRate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CMS_ShipmentDetails> CMS_ShipmentDetails { get; set; }
-        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
+        public virtual ICollection<CMS_OrderInfo> CMS_OrderInfo { get; set; }
     }
 }

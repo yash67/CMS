@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Areas/User/views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+      <section class="quote-area ">
+        <div class="container">
+            <div class="row justify-content-center text-left section-title-wrap">
+                <div class="col-lg-12 mt-4">
+                    <h2 class="text-white">
+                        Shipping Details <br>
+                    </h2>
+                </div>
+            </div>
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-12">
+                    <div class="estimated-cost">
+                        <form class="form-wrap" action="#">
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-getEstimation" role="tabpanel" aria-labelledby="nav-getEstimation-tab">
+                                    <div class="row">
+
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="weight"> Category Type</label>
+                                                <input type="text" class="form-control" id="sendername" name="sendername" value= @ViewBag.Category placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="weight"> Service Type</label>
+                                                <input type="text" class="form-control" id="recivername" name="recivername" placeholder="Enter Name" value=@ViewBag.Service onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="weight"> Weight :</label>
+                                                @TempData["Weight"]
+                                                @*<input type="text" class="form-control" id="weight" name="weight" placeholder="Enter Weight" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Weight'" />*@
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="weight"> Price :</label>
+                                                @TempData["Price"]
+                                                @*<input type="text" class="form-control" id="weight" name="weight" placeholder="Enter Weight" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Weight'" />*@
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mt-4">
+                                            <div class="text-center confirm_btn_box">
+                                                <button class="main_btn text-uppercase" href="@Url.Action("","")"><span class="fa fa-mail-reply">&nbsp;Back</span></button>&nbsp;&nbsp;&nbsp;
+                                                @*<button class="main_btn text-uppercase" href="@Url.Action("","")">Confirm</button>*@
+                                                <input type="submit" value="Confirm" formaction="/User/User/ShippingDetails?confirm=true" formmethod="post" />
+                                            </div>
+                                        </div>
+
+                                        @*<div class="col-lg-12 mt-4">
+            <div class="text-center confirm_btn_box">
+                <button class="main_btn text-uppercase" href="@Url.Action("","")">Confirm</button>
+            </div>
+        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

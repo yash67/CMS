@@ -14,6 +14,7 @@ namespace CMS.Data.Interface
         bool UpdateUser(CMS_UserInfo UserInfo);
         CMS_UserInfo GetUser(String id);
         CMS_UserInfo AuthorizeUser(string Email, string Password);
+        bool InsertAddressDetails(CMS_OrderInfo OrderInfo);
 
 
     }

@@ -1,4 +1,5 @@
-﻿using CMS.Business.Interface;
+﻿using AutoMapper;
+using CMS.Business.Interface;
 using CMS.BusinessEntities.ViewModel;
 using CMS.Data.Database;
 using CMS.Data.Interface;
@@ -19,12 +20,18 @@ namespace CMS.Business.Manager
             _dealerRepository = dealerRepository;
         }
 
-      
+
 
         public List<DealerViewModel> GetDealerCompanyList(long From, long To, long DealerProductId, long DealerServiceId)
         {
             List<DealerViewModel> Dealers = _dealerRepository.GetDealerCompanyList(From, To, DealerProductId, DealerServiceId);
             return Dealers;
+        }
+
+        public List<AddressDetailsViewModel> GetOrders()
+        {
+            List<AddressDetailsViewModel> Orders = _dealerRepository.GetOrders();
+            return Orders;
         }
     }
 }

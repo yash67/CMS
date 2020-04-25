@@ -90,6 +90,18 @@ namespace CMS.WebAPI.Controllers
             //    return Ok(authorize);
             //}
         }
-      
+
+        [HttpPost]
+        public IHttpActionResult InsertAddressDetails(AddressDetailsViewModel OrderInfo)
+        {
+            bool status = _userManager.InsertAddressDetails(OrderInfo);
+            if(status == false)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+
+
     }
 }
