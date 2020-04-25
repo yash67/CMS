@@ -45,6 +45,31 @@ namespace Project_Layout_Demo.Areas.User.Controllers
             TempData["Price"] = prices;
             return View(dealers);
         }
+        [HttpGet]
+        public ActionResult DashBoard()
+        {
+            return View(); 
+        }
+        [HttpGet]
+        public ActionResult QuoteList()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult AddressDetails()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult ShippingDetails()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Tracking()
+        {
+            return View();
+        }
         // GET: User/User
         [HttpGet]
         public ActionResult Registration()

@@ -1510,7 +1510,7 @@ ul {
 /* line 315, /Applications/MAMP/htdocs/naim/color-lib/160 lagoon Logistics/scss/_home.scss */
 
 .quote-area .estimated-cost .form-wrap .current {
-    margin-left: -32px;
+    /*margin-left: -32px;*/
     font-size: 13px;
 }
 
@@ -6665,3 +6665,8 @@ h6 {
 
 
 /*# sourceMappingURL=../css/style.map */
+
+.list {
+    max-height: 190px !important;
+    overflow: auto !important;
+}
