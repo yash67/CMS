@@ -17,12 +17,6 @@ namespace CMS.Data.Repository
             cMSEntites = new CMSEntities();
         }
 
-        public CMS_ServiceMaster GetService(long serviceid)
-        {
-            CMS_ServiceMaster Service = cMSEntites.CMS_ServiceMaster.Find(serviceid);
-            return Service;
-        }
-
         public List<CMS_ServiceMaster> GetServices()
         {
             List<CMS_ServiceMaster> Services = cMSEntites.CMS_ServiceMaster.ToList();

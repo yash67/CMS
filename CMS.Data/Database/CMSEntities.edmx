@@ -80,13 +80,10 @@
           <Property Name="OrderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DealerId" Type="bigint" Nullable="false" />
           <Property Name="UserId" Type="bigint" Nullable="false" />
-          <Property Name="FromName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FromAddressLine" Type="nvarchar(max)" Nullable="false" />
           <Property Name="FromAreaName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FromCityName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FromPinCode" Type="int" Nullable="false" />
-          <Property Name="FromMobileNo" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="FromEmail" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="ToName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ToAddressLine" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ToAreaName" Type="varchar" MaxLength="50" Nullable="false" />
@@ -94,10 +91,6 @@
           <Property Name="ToPinCode" Type="int" Nullable="false" />
           <Property Name="ToMobileNo" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="ToEmail" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="PackageWeight" Type="decimal" Precision="7" Scale="3" Nullable="false" />
-          <Property Name="DealerProductId" Type="bigint" Nullable="false" />
-          <Property Name="DealerServiceId" Type="bigint" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="9" Scale="3" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -127,6 +120,16 @@
           <Property Name="ServiceId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="CMS_ShipmentDetails">
+          <Key>
+            <PropertyRef Name="TrackingId" />
+          </Key>
+          <Property Name="TrackingId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrderId" Type="bigint" Nullable="false" />
+          <Property Name="DealerProductId" Type="bigint" Nullable="false" />
+          <Property Name="DealerServiceId" Type="bigint" Nullable="false" />
+          <Property Name="PackageWeight" Type="decimal" Precision="7" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="CMS_UserInfo">
           <Key>
@@ -286,30 +289,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CMS_OrderInfo_CMS_DealerProductCategory">
-          <End Role="CMS_DealerProductCategory" Type="Self.CMS_DealerProductCategory" Multiplicity="1" />
-          <End Role="CMS_OrderInfo" Type="Self.CMS_OrderInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_DealerProductCategory">
-              <PropertyRef Name="DealerProductId" />
-            </Principal>
-            <Dependent Role="CMS_OrderInfo">
-              <PropertyRef Name="DealerProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CMS_OrderInfo_CMS_DealerService">
-          <End Role="CMS_DealerService" Type="Self.CMS_DealerService" Multiplicity="1" />
-          <End Role="CMS_OrderInfo" Type="Self.CMS_OrderInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_DealerService">
-              <PropertyRef Name="DealerServiceId" />
-            </Principal>
-            <Dependent Role="CMS_OrderInfo">
-              <PropertyRef Name="DealerServiceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CMS_OrderInfo_CMS_UserInfo">
           <End Role="CMS_UserInfo" Type="Self.CMS_UserInfo" Multiplicity="1" />
           <End Role="CMS_OrderInfo" Type="Self.CMS_OrderInfo" Multiplicity="*" />
@@ -319,6 +298,42 @@
             </Principal>
             <Dependent Role="CMS_OrderInfo">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_ShipmentDetails_CMS_DealerProductCategory">
+          <End Role="CMS_DealerProductCategory" Type="Self.CMS_DealerProductCategory" Multiplicity="1" />
+          <End Role="CMS_ShipmentDetails" Type="Self.CMS_ShipmentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_DealerProductCategory">
+              <PropertyRef Name="DealerProductId" />
+            </Principal>
+            <Dependent Role="CMS_ShipmentDetails">
+              <PropertyRef Name="DealerProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_ShipmentDetails_CMS_DealerService">
+          <End Role="CMS_DealerService" Type="Self.CMS_DealerService" Multiplicity="1" />
+          <End Role="CMS_ShipmentDetails" Type="Self.CMS_ShipmentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_DealerService">
+              <PropertyRef Name="DealerServiceId" />
+            </Principal>
+            <Dependent Role="CMS_ShipmentDetails">
+              <PropertyRef Name="DealerServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_ShipmentDetails_CMS_OrderInfo">
+          <End Role="CMS_OrderInfo" Type="Self.CMS_OrderInfo" Multiplicity="1" />
+          <End Role="CMS_ShipmentDetails" Type="Self.CMS_ShipmentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_OrderInfo">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="CMS_ShipmentDetails">
+              <PropertyRef Name="OrderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -345,6 +360,7 @@
           <EntitySet Name="CMS_ProductCategoryMaster" EntityType="Self.CMS_ProductCategoryMaster" Schema="dbo" Table="CMS.ProductCategoryMaster" store:Type="Tables" />
           <EntitySet Name="CMS_RoleMaster" EntityType="Self.CMS_RoleMaster" Schema="dbo" Table="CMS.RoleMaster" store:Type="Tables" />
           <EntitySet Name="CMS_ServiceMaster" EntityType="Self.CMS_ServiceMaster" Schema="dbo" Table="CMS.ServiceMaster" store:Type="Tables" />
+          <EntitySet Name="CMS_ShipmentDetails" EntityType="Self.CMS_ShipmentDetails" Schema="dbo" Table="CMS.ShipmentDetails" store:Type="Tables" />
           <EntitySet Name="CMS_UserInfo" EntityType="Self.CMS_UserInfo" Schema="dbo" Table="CMS.UserInfo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CMS_DealerCity_CMS_CityMaster" Association="Self.FK_CMS_DealerCity_CMS_CityMaster">
@@ -391,17 +407,21 @@
             <End Role="CMS_DealerInfo" EntitySet="CMS_DealerInfo" />
             <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK_CMS_OrderInfo_CMS_DealerProductCategory" Association="Self.FK_CMS_OrderInfo_CMS_DealerProductCategory">
-            <End Role="CMS_DealerProductCategory" EntitySet="CMS_DealerProductCategory" />
-            <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CMS_OrderInfo_CMS_DealerService" Association="Self.FK_CMS_OrderInfo_CMS_DealerService">
-            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
-            <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
-          </AssociationSet>
           <AssociationSet Name="FK_CMS_OrderInfo_CMS_UserInfo" Association="Self.FK_CMS_OrderInfo_CMS_UserInfo">
             <End Role="CMS_UserInfo" EntitySet="CMS_UserInfo" />
             <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_ShipmentDetails_CMS_DealerProductCategory" Association="Self.FK_CMS_ShipmentDetails_CMS_DealerProductCategory">
+            <End Role="CMS_DealerProductCategory" EntitySet="CMS_DealerProductCategory" />
+            <End Role="CMS_ShipmentDetails" EntitySet="CMS_ShipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_ShipmentDetails_CMS_DealerService" Association="Self.FK_CMS_ShipmentDetails_CMS_DealerService">
+            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
+            <End Role="CMS_ShipmentDetails" EntitySet="CMS_ShipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_ShipmentDetails_CMS_OrderInfo" Association="Self.FK_CMS_ShipmentDetails_CMS_OrderInfo">
+            <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
+            <End Role="CMS_ShipmentDetails" EntitySet="CMS_ShipmentDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_CMS_UserInfo_CMS_RoleMaster" Association="Self.FK_CMS_UserInfo_CMS_RoleMaster">
             <End Role="CMS_RoleMaster" EntitySet="CMS_RoleMaster" />
@@ -432,6 +452,19 @@
           <NavigationProperty Name="CMS_CityMaster" Relationship="Self.FK_CMS_DealerCity_CMS_CityMaster" FromRole="CMS_DealerCity" ToRole="CMS_CityMaster" />
           <NavigationProperty Name="CMS_DealerInfo" Relationship="CMSDataEntities.FK_CMS_DealerCity_CMS_DealerInfo" FromRole="CMS_DealerCity" ToRole="CMS_DealerInfo" />
         </EntityType>
+        <EntityType Name="CMS_DealerProductCategory">
+          <Key>
+            <PropertyRef Name="DealerProductId" />
+          </Key>
+          <Property Name="DealerProductId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DealerId" Type="Int64" Nullable="false" />
+          <Property Name="CategoryId" Type="Int64" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="CMS_ProductCategoryMaster" Relationship="Self.FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster" FromRole="CMS_DealerProductCategory" ToRole="CMS_ProductCategoryMaster" />
+          <NavigationProperty Name="CMS_DealerRate" Relationship="Self.FK_CMS_DealerRate_CMS_DealerProductCategory" FromRole="CMS_DealerProductCategory" ToRole="CMS_DealerRate" />
+          <NavigationProperty Name="CMS_ShipmentDetails" Relationship="Self.FK_CMS_ShipmentDetails_CMS_DealerProductCategory" FromRole="CMS_DealerProductCategory" ToRole="CMS_ShipmentDetails" />
+          <NavigationProperty Name="CMS_DealerInfo" Relationship="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_DealerInfo" FromRole="CMS_DealerProductCategory" ToRole="CMS_DealerInfo" />
+        </EntityType>
         <EntityType Name="CMS_DealerRate">
           <Key>
             <PropertyRef Name="DealerRateId" />
@@ -444,9 +477,48 @@
           <Property Name="PerServicePrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="PerKgPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="PerKmPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="CMS_DealerProductCategory" Relationship="Self.FK_CMS_DealerRate_CMS_DealerProductCategory" FromRole="CMS_DealerRate" ToRole="CMS_DealerProductCategory" />
+          <NavigationProperty Name="CMS_DealerService" Relationship="Self.FK_CMS_DealerRate_CMS_DealerService" FromRole="CMS_DealerRate" ToRole="CMS_DealerService" />
           <NavigationProperty Name="CMS_DealerInfo" Relationship="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerInfo" FromRole="CMS_DealerRate" ToRole="CMS_DealerInfo" />
-          <NavigationProperty Name="CMS_DealerService" Relationship="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerService" FromRole="CMS_DealerRate" ToRole="CMS_DealerService" />
-          <NavigationProperty Name="CMS_DealerProductCategory" Relationship="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerProductCategory" FromRole="CMS_DealerRate" ToRole="CMS_DealerProductCategory" />
+        </EntityType>
+        <EntityType Name="CMS_DealerService">
+          <Key>
+            <PropertyRef Name="DealerServiceId" />
+          </Key>
+          <Property Name="DealerServiceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DealerId" Type="Int64" Nullable="false" />
+          <Property Name="ServiceId" Type="Int64" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="CMS_DealerRate" Relationship="Self.FK_CMS_DealerRate_CMS_DealerService" FromRole="CMS_DealerService" ToRole="CMS_DealerRate" />
+          <NavigationProperty Name="CMS_ServiceMaster" Relationship="Self.FK_CMS_DealerService_CMS_ServiceMaster" FromRole="CMS_DealerService" ToRole="CMS_ServiceMaster" />
+          <NavigationProperty Name="CMS_ShipmentDetails" Relationship="Self.FK_CMS_ShipmentDetails_CMS_DealerService" FromRole="CMS_DealerService" ToRole="CMS_ShipmentDetails" />
+          <NavigationProperty Name="CMS_DealerInfo" Relationship="CMSDataEntities.FK_CMS_DealerService_CMS_DealerInfo" FromRole="CMS_DealerService" ToRole="CMS_DealerInfo" />
+        </EntityType>
+        <EntityType Name="CMS_OrderInfo">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DealerId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="FromAddressLine" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FromCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FromPinCode" Type="Int32" Nullable="false" />
+          <Property Name="ToName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ToAddressLine" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ToAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ToCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ToPinCode" Type="Int32" Nullable="false" />
+          <Property Name="ToMobileNo" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ToEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CMS_UserInfo" Relationship="Self.FK_CMS_OrderInfo_CMS_UserInfo" FromRole="CMS_OrderInfo" ToRole="CMS_UserInfo" />
+          <NavigationProperty Name="CMS_ShipmentDetails" Relationship="Self.FK_CMS_ShipmentDetails_CMS_OrderInfo" FromRole="CMS_OrderInfo" ToRole="CMS_ShipmentDetails" />
+          <NavigationProperty Name="CMS_DealerInfo" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerInfo" FromRole="CMS_OrderInfo" ToRole="CMS_DealerInfo" />
         </EntityType>
         <EntityType Name="CMS_ProductCategoryMaster">
           <Key>
@@ -455,7 +527,7 @@
           <Property Name="CategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="CMS_DealerProductCategory" Relationship="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster" FromRole="CMS_ProductCategoryMaster" ToRole="CMS_DealerProductCategory" />
+          <NavigationProperty Name="CMS_DealerProductCategory" Relationship="Self.FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster" FromRole="CMS_ProductCategoryMaster" ToRole="CMS_DealerProductCategory" />
         </EntityType>
         <EntityType Name="CMS_RoleMaster">
           <Key>
@@ -475,7 +547,20 @@
           <Property Name="ServiceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="CMS_DealerService" Relationship="CMSDataEntities.FK_CMS_DealerService_CMS_ServiceMaster" FromRole="CMS_ServiceMaster" ToRole="CMS_DealerService" />
+          <NavigationProperty Name="CMS_DealerService" Relationship="Self.FK_CMS_DealerService_CMS_ServiceMaster" FromRole="CMS_ServiceMaster" ToRole="CMS_DealerService" />
+        </EntityType>
+        <EntityType Name="CMS_ShipmentDetails">
+          <Key>
+            <PropertyRef Name="TrackingId" />
+          </Key>
+          <Property Name="TrackingId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderId" Type="Int64" Nullable="false" />
+          <Property Name="DealerProductId" Type="Int64" Nullable="false" />
+          <Property Name="DealerServiceId" Type="Int64" Nullable="false" />
+          <Property Name="PackageWeight" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <NavigationProperty Name="CMS_DealerProductCategory" Relationship="Self.FK_CMS_ShipmentDetails_CMS_DealerProductCategory" FromRole="CMS_ShipmentDetails" ToRole="CMS_DealerProductCategory" />
+          <NavigationProperty Name="CMS_DealerService" Relationship="Self.FK_CMS_ShipmentDetails_CMS_DealerService" FromRole="CMS_ShipmentDetails" ToRole="CMS_DealerService" />
+          <NavigationProperty Name="CMS_OrderInfo" Relationship="Self.FK_CMS_ShipmentDetails_CMS_OrderInfo" FromRole="CMS_ShipmentDetails" ToRole="CMS_OrderInfo" />
         </EntityType>
         <EntityType Name="CMS_UserInfo">
           <Key>
@@ -492,8 +577,8 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CMS_OrderInfo" Relationship="Self.FK_CMS_OrderInfo_CMS_UserInfo" FromRole="CMS_UserInfo" ToRole="CMS_OrderInfo" />
           <NavigationProperty Name="CMS_RoleMaster" Relationship="Self.FK_CMS_UserInfo_CMS_RoleMaster" FromRole="CMS_UserInfo" ToRole="CMS_RoleMaster" />
-          <NavigationProperty Name="CMS_OrderInfo" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_UserInfo" FromRole="CMS_UserInfo" ToRole="CMS_OrderInfo" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -517,6 +602,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster">
+          <End Role="CMS_ProductCategoryMaster" Type="Self.CMS_ProductCategoryMaster" Multiplicity="1" />
+          <End Role="CMS_DealerProductCategory" Type="Self.CMS_DealerProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_ProductCategoryMaster">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CMS_DealerProductCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_DealerRate_CMS_DealerProductCategory">
+          <End Role="CMS_DealerProductCategory" Type="Self.CMS_DealerProductCategory" Multiplicity="1" />
+          <End Role="CMS_DealerRate" Type="Self.CMS_DealerRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_DealerProductCategory">
+              <PropertyRef Name="DealerProductId" />
+            </Principal>
+            <Dependent Role="CMS_DealerRate">
+              <PropertyRef Name="DealerProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_ShipmentDetails_CMS_DealerProductCategory">
+          <End Role="CMS_DealerProductCategory" Type="Self.CMS_DealerProductCategory" Multiplicity="1" />
+          <End Role="CMS_ShipmentDetails" Type="Self.CMS_ShipmentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_DealerProductCategory">
+              <PropertyRef Name="DealerProductId" />
+            </Principal>
+            <Dependent Role="CMS_ShipmentDetails">
+              <PropertyRef Name="DealerProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_DealerRate_CMS_DealerService">
+          <End Role="CMS_DealerService" Type="Self.CMS_DealerService" Multiplicity="1" />
+          <End Role="CMS_DealerRate" Type="Self.CMS_DealerRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_DealerService">
+              <PropertyRef Name="DealerServiceId" />
+            </Principal>
+            <Dependent Role="CMS_DealerRate">
+              <PropertyRef Name="DealerServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_DealerService_CMS_ServiceMaster">
+          <End Role="CMS_ServiceMaster" Type="Self.CMS_ServiceMaster" Multiplicity="1" />
+          <End Role="CMS_DealerService" Type="Self.CMS_DealerService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_ServiceMaster">
+              <PropertyRef Name="ServiceId" />
+            </Principal>
+            <Dependent Role="CMS_DealerService">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_ShipmentDetails_CMS_DealerService">
+          <End Role="CMS_DealerService" Type="Self.CMS_DealerService" Multiplicity="1" />
+          <End Role="CMS_ShipmentDetails" Type="Self.CMS_ShipmentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_DealerService">
+              <PropertyRef Name="DealerServiceId" />
+            </Principal>
+            <Dependent Role="CMS_ShipmentDetails">
+              <PropertyRef Name="DealerServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_OrderInfo_CMS_UserInfo">
+          <End Role="CMS_UserInfo" Type="Self.CMS_UserInfo" Multiplicity="1" />
+          <End Role="CMS_OrderInfo" Type="Self.CMS_OrderInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_UserInfo">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CMS_OrderInfo">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_ShipmentDetails_CMS_OrderInfo">
+          <End Role="CMS_OrderInfo" Type="Self.CMS_OrderInfo" Multiplicity="1" />
+          <End Role="CMS_ShipmentDetails" Type="Self.CMS_ShipmentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_OrderInfo">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="CMS_ShipmentDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CMS_UserInfo_CMS_RoleMaster">
           <End Role="CMS_RoleMaster" Type="Self.CMS_RoleMaster" Multiplicity="1" />
           <End Role="CMS_UserInfo" Type="Self.CMS_UserInfo" Multiplicity="*" />
@@ -532,15 +713,51 @@
         <EntityContainer Name="CMSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CMS_CityMaster" EntityType="Self.CMS_CityMaster" />
           <EntitySet Name="CMS_DealerCity" EntityType="Self.CMS_DealerCity" />
+          <EntitySet Name="CMS_DealerProductCategory" EntityType="Self.CMS_DealerProductCategory" />
           <EntitySet Name="CMS_DealerRate" EntityType="Self.CMS_DealerRate" />
+          <EntitySet Name="CMS_DealerService" EntityType="Self.CMS_DealerService" />
+          <EntitySet Name="CMS_OrderInfo" EntityType="Self.CMS_OrderInfo" />
           <EntitySet Name="CMS_ProductCategoryMaster" EntityType="Self.CMS_ProductCategoryMaster" />
           <EntitySet Name="CMS_RoleMaster" EntityType="Self.CMS_RoleMaster" />
           <EntitySet Name="CMS_ServiceMaster" EntityType="Self.CMS_ServiceMaster" />
+          <EntitySet Name="CMS_ShipmentDetails" EntityType="Self.CMS_ShipmentDetails" />
           <EntitySet Name="CMS_UserInfo" EntityType="Self.CMS_UserInfo" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK_CMS_DealerCity_CMS_CityMaster" Association="Self.FK_CMS_DealerCity_CMS_CityMaster">
             <End Role="CMS_CityMaster" EntitySet="CMS_CityMaster" />
             <End Role="CMS_DealerCity" EntitySet="CMS_DealerCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster" Association="Self.FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster">
+            <End Role="CMS_ProductCategoryMaster" EntitySet="CMS_ProductCategoryMaster" />
+            <End Role="CMS_DealerProductCategory" EntitySet="CMS_DealerProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_DealerRate_CMS_DealerProductCategory" Association="Self.FK_CMS_DealerRate_CMS_DealerProductCategory">
+            <End Role="CMS_DealerProductCategory" EntitySet="CMS_DealerProductCategory" />
+            <End Role="CMS_DealerRate" EntitySet="CMS_DealerRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_ShipmentDetails_CMS_DealerProductCategory" Association="Self.FK_CMS_ShipmentDetails_CMS_DealerProductCategory">
+            <End Role="CMS_DealerProductCategory" EntitySet="CMS_DealerProductCategory" />
+            <End Role="CMS_ShipmentDetails" EntitySet="CMS_ShipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_DealerRate_CMS_DealerService" Association="Self.FK_CMS_DealerRate_CMS_DealerService">
+            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
+            <End Role="CMS_DealerRate" EntitySet="CMS_DealerRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_DealerService_CMS_ServiceMaster" Association="Self.FK_CMS_DealerService_CMS_ServiceMaster">
+            <End Role="CMS_ServiceMaster" EntitySet="CMS_ServiceMaster" />
+            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_ShipmentDetails_CMS_DealerService" Association="Self.FK_CMS_ShipmentDetails_CMS_DealerService">
+            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
+            <End Role="CMS_ShipmentDetails" EntitySet="CMS_ShipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_OrderInfo_CMS_UserInfo" Association="Self.FK_CMS_OrderInfo_CMS_UserInfo">
+            <End Role="CMS_UserInfo" EntitySet="CMS_UserInfo" />
+            <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_ShipmentDetails_CMS_OrderInfo" Association="Self.FK_CMS_ShipmentDetails_CMS_OrderInfo">
+            <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
+            <End Role="CMS_ShipmentDetails" EntitySet="CMS_ShipmentDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_CMS_UserInfo_CMS_RoleMaster" Association="Self.FK_CMS_UserInfo_CMS_RoleMaster">
             <End Role="CMS_RoleMaster" EntitySet="CMS_RoleMaster" />
@@ -555,54 +772,23 @@
             <End Role="CMS_RoleMaster" EntitySet="CMS_RoleMaster" />
             <End Role="CMS_DealerInfo" EntitySet="CMS_DealerInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK_CMS_DealerRate_CMS_DealerInfo" Association="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerInfo">
-            <End Role="CMS_DealerInfo" EntitySet="CMS_DealerInfo" />
-            <End Role="CMS_DealerRate" EntitySet="CMS_DealerRate" />
-          </AssociationSet>
-          <EntitySet Name="CMS_OrderInfo" EntityType="CMSDataEntities.CMS_OrderInfo" />
-          <AssociationSet Name="FK_CMS_OrderInfo_CMS_DealerInfo" Association="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerInfo">
-            <End Role="CMS_DealerInfo" EntitySet="CMS_DealerInfo" />
-            <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CMS_OrderInfo_CMS_UserInfo" Association="CMSDataEntities.FK_CMS_OrderInfo_CMS_UserInfo">
-            <End Role="CMS_UserInfo" EntitySet="CMS_UserInfo" />
-            <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
-          </AssociationSet>
-          <EntitySet Name="CMS_DealerService" EntityType="CMSDataEntities.CMS_DealerService" />
-          <AssociationSet Name="FK_CMS_DealerService_CMS_DealerInfo" Association="CMSDataEntities.FK_CMS_DealerService_CMS_DealerInfo">
-            <End Role="CMS_DealerInfo" EntitySet="CMS_DealerInfo" />
-            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CMS_DealerRate_CMS_DealerService" Association="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerService">
-            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
-            <End Role="CMS_DealerRate" EntitySet="CMS_DealerRate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CMS_DealerService_CMS_ServiceMaster" Association="CMSDataEntities.FK_CMS_DealerService_CMS_ServiceMaster">
-            <End Role="CMS_ServiceMaster" EntitySet="CMS_ServiceMaster" />
-            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CMS_OrderInfo_CMS_DealerService" Association="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerService">
-            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
-            <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
-          </AssociationSet>
-          <EntitySet Name="CMS_DealerProductCategory" EntityType="CMSDataEntities.CMS_DealerProductCategory" />
           <AssociationSet Name="FK_CMS_DealerProductCategory_CMS_DealerInfo" Association="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_DealerInfo">
             <End Role="CMS_DealerInfo" EntitySet="CMS_DealerInfo" />
             <End Role="CMS_DealerProductCategory" EntitySet="CMS_DealerProductCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster" Association="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster">
-            <End Role="CMS_ProductCategoryMaster" EntitySet="CMS_ProductCategoryMaster" />
-            <End Role="CMS_DealerProductCategory" EntitySet="CMS_DealerProductCategory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CMS_DealerRate_CMS_DealerProductCategory" Association="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerProductCategory">
-            <End Role="CMS_DealerProductCategory" EntitySet="CMS_DealerProductCategory" />
+          <AssociationSet Name="FK_CMS_DealerRate_CMS_DealerInfo" Association="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerInfo">
+            <End Role="CMS_DealerInfo" EntitySet="CMS_DealerInfo" />
             <End Role="CMS_DealerRate" EntitySet="CMS_DealerRate" />
           </AssociationSet>
-          <AssociationSet Name="FK_CMS_OrderInfo_CMS_DealerProductCategory" Association="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerProductCategory">
-            <End Role="CMS_DealerProductCategory" EntitySet="CMS_DealerProductCategory" />
+          <AssociationSet Name="FK_CMS_DealerService_CMS_DealerInfo" Association="CMSDataEntities.FK_CMS_DealerService_CMS_DealerInfo">
+            <End Role="CMS_DealerInfo" EntitySet="CMS_DealerInfo" />
+            <End Role="CMS_DealerService" EntitySet="CMS_DealerService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMS_OrderInfo_CMS_DealerInfo" Association="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerInfo">
+            <End Role="CMS_DealerInfo" EntitySet="CMS_DealerInfo" />
             <End Role="CMS_OrderInfo" EntitySet="CMS_OrderInfo" />
           </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="CMS_DealerInfo">
           <Key>
             <PropertyRef Name="DealerId" />
@@ -624,10 +810,10 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="CMS_DealerCity" Relationship="CMSDataEntities.FK_CMS_DealerCity_CMS_DealerInfo" FromRole="CMS_DealerInfo" ToRole="CMS_DealerCity" />
           <NavigationProperty Name="CMS_RoleMaster" Relationship="CMSDataEntities.FK_CMS_DealerInfo_CMS_RoleMaster" FromRole="CMS_DealerInfo" ToRole="CMS_RoleMaster" />
-          <NavigationProperty Name="CMS_DealerRate" Relationship="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerInfo" FromRole="CMS_DealerInfo" ToRole="CMS_DealerRate" />
-          <NavigationProperty Name="CMS_OrderInfo" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerInfo" FromRole="CMS_DealerInfo" ToRole="CMS_OrderInfo" />
-          <NavigationProperty Name="CMS_DealerService" Relationship="CMSDataEntities.FK_CMS_DealerService_CMS_DealerInfo" FromRole="CMS_DealerInfo" ToRole="CMS_DealerService" />
           <NavigationProperty Name="CMS_DealerProductCategory" Relationship="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_DealerInfo" FromRole="CMS_DealerInfo" ToRole="CMS_DealerProductCategory" />
+          <NavigationProperty Name="CMS_DealerRate" Relationship="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerInfo" FromRole="CMS_DealerInfo" ToRole="CMS_DealerRate" />
+          <NavigationProperty Name="CMS_DealerService" Relationship="CMSDataEntities.FK_CMS_DealerService_CMS_DealerInfo" FromRole="CMS_DealerInfo" ToRole="CMS_DealerService" />
+          <NavigationProperty Name="CMS_OrderInfo" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerInfo" FromRole="CMS_DealerInfo" ToRole="CMS_OrderInfo" />
         </EntityType>
         <Association Name="FK_CMS_DealerCity_CMS_DealerInfo">
           <End Type="CMSDataEntities.CMS_DealerInfo" Role="CMS_DealerInfo" Multiplicity="1" />
@@ -653,150 +839,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CMS_DealerRate_CMS_DealerInfo">
-          <End Type="CMSDataEntities.CMS_DealerInfo" Role="CMS_DealerInfo" Multiplicity="1" />
-          <End Type="CMSDataEntities.CMS_DealerRate" Role="CMS_DealerRate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_DealerInfo">
-              <PropertyRef Name="DealerId" />
-            </Principal>
-            <Dependent Role="CMS_DealerRate">
-              <PropertyRef Name="DealerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CMS_OrderInfo">
-          <Key>
-            <PropertyRef Name="OrderId" />
-          </Key>
-          <Property Name="OrderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DealerId" Type="Int64" Nullable="false" />
-          <Property Name="UserId" Type="Int64" Nullable="false" />
-          <Property Name="FromName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FromAddressLine" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FromAreaName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FromCityName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FromPinCode" Type="Int32" Nullable="false" />
-          <Property Name="FromMobileNo" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="FromEmail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ToName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ToAddressLine" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ToAreaName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ToCityName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ToPinCode" Type="Int32" Nullable="false" />
-          <Property Name="ToMobileNo" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="ToEmail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="PackageWeight" Type="Decimal" Nullable="false" Precision="7" Scale="3" />
-          <Property Name="DealerProductId" Type="Int64" Nullable="false" />
-          <Property Name="DealerServiceId" Type="Int64" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="9" Scale="3" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CMS_DealerInfo" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerInfo" FromRole="CMS_OrderInfo" ToRole="CMS_DealerInfo" />
-          <NavigationProperty Name="CMS_UserInfo" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_UserInfo" FromRole="CMS_OrderInfo" ToRole="CMS_UserInfo" />
-          <NavigationProperty Name="CMS_DealerService" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerService" FromRole="CMS_OrderInfo" ToRole="CMS_DealerService" />
-          <NavigationProperty Name="CMS_DealerProductCategory" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerProductCategory" FromRole="CMS_OrderInfo" ToRole="CMS_DealerProductCategory" />
-        </EntityType>
-        <Association Name="FK_CMS_OrderInfo_CMS_DealerInfo">
-          <End Type="CMSDataEntities.CMS_DealerInfo" Role="CMS_DealerInfo" Multiplicity="1" />
-          <End Type="CMSDataEntities.CMS_OrderInfo" Role="CMS_OrderInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_DealerInfo">
-              <PropertyRef Name="DealerId" />
-            </Principal>
-            <Dependent Role="CMS_OrderInfo">
-              <PropertyRef Name="DealerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CMS_OrderInfo_CMS_UserInfo">
-          <End Type="CMSDataEntities.CMS_UserInfo" Role="CMS_UserInfo" Multiplicity="1" />
-          <End Type="CMSDataEntities.CMS_OrderInfo" Role="CMS_OrderInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_UserInfo">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="CMS_OrderInfo">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CMS_DealerService">
-          <Key>
-            <PropertyRef Name="DealerServiceId" />
-          </Key>
-          <Property Name="DealerServiceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DealerId" Type="Int64" Nullable="false" />
-          <Property Name="ServiceId" Type="Int64" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="CMS_DealerInfo" Relationship="CMSDataEntities.FK_CMS_DealerService_CMS_DealerInfo" FromRole="CMS_DealerService" ToRole="CMS_DealerInfo" />
-          <NavigationProperty Name="CMS_DealerRate" Relationship="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerService" FromRole="CMS_DealerService" ToRole="CMS_DealerRate" />
-          <NavigationProperty Name="CMS_ServiceMaster" Relationship="CMSDataEntities.FK_CMS_DealerService_CMS_ServiceMaster" FromRole="CMS_DealerService" ToRole="CMS_ServiceMaster" />
-          <NavigationProperty Name="CMS_OrderInfo" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerService" FromRole="CMS_DealerService" ToRole="CMS_OrderInfo" />
-        </EntityType>
-        <Association Name="FK_CMS_DealerService_CMS_DealerInfo">
-          <End Type="CMSDataEntities.CMS_DealerInfo" Role="CMS_DealerInfo" Multiplicity="1" />
-          <End Type="CMSDataEntities.CMS_DealerService" Role="CMS_DealerService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_DealerInfo">
-              <PropertyRef Name="DealerId" />
-            </Principal>
-            <Dependent Role="CMS_DealerService">
-              <PropertyRef Name="DealerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CMS_DealerRate_CMS_DealerService">
-          <End Type="CMSDataEntities.CMS_DealerService" Role="CMS_DealerService" Multiplicity="1" />
-          <End Type="CMSDataEntities.CMS_DealerRate" Role="CMS_DealerRate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_DealerService">
-              <PropertyRef Name="DealerServiceId" />
-            </Principal>
-            <Dependent Role="CMS_DealerRate">
-              <PropertyRef Name="DealerServiceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CMS_DealerService_CMS_ServiceMaster">
-          <End Type="CMSDataEntities.CMS_ServiceMaster" Role="CMS_ServiceMaster" Multiplicity="1" />
-          <End Type="CMSDataEntities.CMS_DealerService" Role="CMS_DealerService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_ServiceMaster">
-              <PropertyRef Name="ServiceId" />
-            </Principal>
-            <Dependent Role="CMS_DealerService">
-              <PropertyRef Name="ServiceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CMS_OrderInfo_CMS_DealerService">
-          <End Type="CMSDataEntities.CMS_DealerService" Role="CMS_DealerService" Multiplicity="1" />
-          <End Type="CMSDataEntities.CMS_OrderInfo" Role="CMS_OrderInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_DealerService">
-              <PropertyRef Name="DealerServiceId" />
-            </Principal>
-            <Dependent Role="CMS_OrderInfo">
-              <PropertyRef Name="DealerServiceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CMS_DealerProductCategory">
-          <Key>
-            <PropertyRef Name="DealerProductId" />
-          </Key>
-          <Property Name="DealerProductId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DealerId" Type="Int64" Nullable="false" />
-          <Property Name="CategoryId" Type="Int64" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="CMS_DealerInfo" Relationship="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_DealerInfo" FromRole="CMS_DealerProductCategory" ToRole="CMS_DealerInfo" />
-          <NavigationProperty Name="CMS_ProductCategoryMaster" Relationship="CMSDataEntities.FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster" FromRole="CMS_DealerProductCategory" ToRole="CMS_ProductCategoryMaster" />
-          <NavigationProperty Name="CMS_DealerRate" Relationship="CMSDataEntities.FK_CMS_DealerRate_CMS_DealerProductCategory" FromRole="CMS_DealerProductCategory" ToRole="CMS_DealerRate" />
-          <NavigationProperty Name="CMS_OrderInfo" Relationship="CMSDataEntities.FK_CMS_OrderInfo_CMS_DealerProductCategory" FromRole="CMS_DealerProductCategory" ToRole="CMS_OrderInfo" />
-        </EntityType>
         <Association Name="FK_CMS_DealerProductCategory_CMS_DealerInfo">
           <End Type="CMSDataEntities.CMS_DealerInfo" Role="CMS_DealerInfo" Multiplicity="1" />
           <End Type="CMSDataEntities.CMS_DealerProductCategory" Role="CMS_DealerProductCategory" Multiplicity="*" />
@@ -809,43 +851,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CMS_DealerProductCategory_CMS_ProductCategoryMaster">
-          <End Type="CMSDataEntities.CMS_ProductCategoryMaster" Role="CMS_ProductCategoryMaster" Multiplicity="1" />
-          <End Type="CMSDataEntities.CMS_DealerProductCategory" Role="CMS_DealerProductCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CMS_ProductCategoryMaster">
-              <PropertyRef Name="CategoryId" />
-            </Principal>
-            <Dependent Role="CMS_DealerProductCategory">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CMS_DealerRate_CMS_DealerProductCategory">
-          <End Type="CMSDataEntities.CMS_DealerProductCategory" Role="CMS_DealerProductCategory" Multiplicity="1" />
+        <Association Name="FK_CMS_DealerRate_CMS_DealerInfo">
+          <End Type="CMSDataEntities.CMS_DealerInfo" Role="CMS_DealerInfo" Multiplicity="1" />
           <End Type="CMSDataEntities.CMS_DealerRate" Role="CMS_DealerRate" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CMS_DealerProductCategory">
-              <PropertyRef Name="DealerProductId" />
+            <Principal Role="CMS_DealerInfo">
+              <PropertyRef Name="DealerId" />
             </Principal>
             <Dependent Role="CMS_DealerRate">
-              <PropertyRef Name="DealerProductId" />
+              <PropertyRef Name="DealerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CMS_OrderInfo_CMS_DealerProductCategory">
-          <End Type="CMSDataEntities.CMS_DealerProductCategory" Role="CMS_DealerProductCategory" Multiplicity="1" />
+        <Association Name="FK_CMS_DealerService_CMS_DealerInfo">
+          <End Type="CMSDataEntities.CMS_DealerInfo" Role="CMS_DealerInfo" Multiplicity="1" />
+          <End Type="CMSDataEntities.CMS_DealerService" Role="CMS_DealerService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMS_DealerInfo">
+              <PropertyRef Name="DealerId" />
+            </Principal>
+            <Dependent Role="CMS_DealerService">
+              <PropertyRef Name="DealerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMS_OrderInfo_CMS_DealerInfo">
+          <End Type="CMSDataEntities.CMS_DealerInfo" Role="CMS_DealerInfo" Multiplicity="1" />
           <End Type="CMSDataEntities.CMS_OrderInfo" Role="CMS_OrderInfo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CMS_DealerProductCategory">
-              <PropertyRef Name="DealerProductId" />
+            <Principal Role="CMS_DealerInfo">
+              <PropertyRef Name="DealerId" />
             </Principal>
             <Dependent Role="CMS_OrderInfo">
-              <PropertyRef Name="DealerProductId" />
+              <PropertyRef Name="DealerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -870,6 +912,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CMS_DealerProductCategory">
+            <EntityTypeMapping TypeName="CMSDataEntities.CMS_DealerProductCategory">
+              <MappingFragment StoreEntitySet="CMS_DealerProductCategory">
+                <ScalarProperty Name="DealerProductId" ColumnName="DealerProductId" />
+                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CMS_DealerRate">
             <EntityTypeMapping TypeName="CMSDataEntities.CMS_DealerRate">
               <MappingFragment StoreEntitySet="CMS_DealerRate">
@@ -881,6 +933,40 @@
                 <ScalarProperty Name="PerServicePrice" ColumnName="PerServicePrice" />
                 <ScalarProperty Name="PerKgPrice" ColumnName="PerKgPrice" />
                 <ScalarProperty Name="PerKmPrice" ColumnName="PerKmPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_DealerService">
+            <EntityTypeMapping TypeName="CMSDataEntities.CMS_DealerService">
+              <MappingFragment StoreEntitySet="CMS_DealerService">
+                <ScalarProperty Name="DealerServiceId" ColumnName="DealerServiceId" />
+                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_OrderInfo">
+            <EntityTypeMapping TypeName="CMSDataEntities.CMS_OrderInfo">
+              <MappingFragment StoreEntitySet="CMS_OrderInfo">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FromAddressLine" ColumnName="FromAddressLine" />
+                <ScalarProperty Name="FromAreaName" ColumnName="FromAreaName" />
+                <ScalarProperty Name="FromCityName" ColumnName="FromCityName" />
+                <ScalarProperty Name="FromPinCode" ColumnName="FromPinCode" />
+                <ScalarProperty Name="ToName" ColumnName="ToName" />
+                <ScalarProperty Name="ToAddressLine" ColumnName="ToAddressLine" />
+                <ScalarProperty Name="ToAreaName" ColumnName="ToAreaName" />
+                <ScalarProperty Name="ToCityName" ColumnName="ToCityName" />
+                <ScalarProperty Name="ToPinCode" ColumnName="ToPinCode" />
+                <ScalarProperty Name="ToMobileNo" ColumnName="ToMobileNo" />
+                <ScalarProperty Name="ToEmail" ColumnName="ToEmail" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -909,6 +995,17 @@
                 <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMS_ShipmentDetails">
+            <EntityTypeMapping TypeName="CMSDataEntities.CMS_ShipmentDetails">
+              <MappingFragment StoreEntitySet="CMS_ShipmentDetails">
+                <ScalarProperty Name="TrackingId" ColumnName="TrackingId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="DealerProductId" ColumnName="DealerProductId" />
+                <ScalarProperty Name="DealerServiceId" ColumnName="DealerServiceId" />
+                <ScalarProperty Name="PackageWeight" ColumnName="PackageWeight" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -958,57 +1055,6 @@
                 <ScalarProperty Name="DealerName" ColumnName="DealerName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="DealerId" ColumnName="DealerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CMS_OrderInfo">
-            <EntityTypeMapping TypeName="CMSDataEntities.CMS_OrderInfo">
-              <MappingFragment StoreEntitySet="CMS_OrderInfo">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="DealerServiceId" ColumnName="DealerServiceId" />
-                <ScalarProperty Name="DealerProductId" ColumnName="DealerProductId" />
-                <ScalarProperty Name="PackageWeight" ColumnName="PackageWeight" />
-                <ScalarProperty Name="ToEmail" ColumnName="ToEmail" />
-                <ScalarProperty Name="ToMobileNo" ColumnName="ToMobileNo" />
-                <ScalarProperty Name="ToPinCode" ColumnName="ToPinCode" />
-                <ScalarProperty Name="ToCityName" ColumnName="ToCityName" />
-                <ScalarProperty Name="ToAreaName" ColumnName="ToAreaName" />
-                <ScalarProperty Name="ToAddressLine" ColumnName="ToAddressLine" />
-                <ScalarProperty Name="ToName" ColumnName="ToName" />
-                <ScalarProperty Name="FromEmail" ColumnName="FromEmail" />
-                <ScalarProperty Name="FromMobileNo" ColumnName="FromMobileNo" />
-                <ScalarProperty Name="FromPinCode" ColumnName="FromPinCode" />
-                <ScalarProperty Name="FromCityName" ColumnName="FromCityName" />
-                <ScalarProperty Name="FromAreaName" ColumnName="FromAreaName" />
-                <ScalarProperty Name="FromAddressLine" ColumnName="FromAddressLine" />
-                <ScalarProperty Name="FromName" ColumnName="FromName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CMS_DealerService">
-            <EntityTypeMapping TypeName="CMSDataEntities.CMS_DealerService">
-              <MappingFragment StoreEntitySet="CMS_DealerService">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
-                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
-                <ScalarProperty Name="DealerServiceId" ColumnName="DealerServiceId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CMS_DealerProductCategory">
-            <EntityTypeMapping TypeName="CMSDataEntities.CMS_DealerProductCategory">
-              <MappingFragment StoreEntitySet="CMS_DealerProductCategory">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
-                <ScalarProperty Name="DealerProductId" ColumnName="DealerProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

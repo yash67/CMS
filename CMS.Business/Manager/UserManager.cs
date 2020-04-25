@@ -64,19 +64,6 @@ namespace CMS.Business.Manager
             return status;
         }
 
-        public bool InsertAddressDetails(AddressDetailsViewModel OrderInfo)
-        {
-            var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<AddressDetailsViewModel, CMS_OrderInfo>();
-            });
-
-            IMapper mapper = config.CreateMapper();
-            var source = OrderInfo;
-            var dest = mapper.Map<AddressDetailsViewModel, CMS_OrderInfo>(source);
-
-            bool status = _userRepository.InsertAddressDetails(dest);
-            return status;
-        }
 
     }
 }

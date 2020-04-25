@@ -1,5 +1,4 @@
 ﻿using CMS.Business.Interface;
-using CMS.BusinessEntities.ViewModel;
 using CMS.Data.Database;
 using System;
 using System.Collections.Generic;
@@ -27,17 +26,5 @@ namespace CMS.WebAPI.Controllers
             }
             return Ok(cities);
         }
-
-        [HttpGet]
-        public IHttpActionResult GetCity(long cityid)
-        {
-            CityViewModel city = _cityManager.GetCity(cityid);
-            if (city == null)
-            {
-                return NotFound();
-            }
-            return Ok(city);
-        }
-
     }
 }

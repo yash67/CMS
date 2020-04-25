@@ -12,19 +12,16 @@ namespace CMS.Data.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class CMS_DealerRate
+    public partial class CMS_ShipmentDetails
     {
-        public long DealerRateId { get; set; }
-        public long DealerId { get; set; }
+        public string TrackingId { get; set; }
+        public long OrderId { get; set; }
         public long DealerProductId { get; set; }
         public long DealerServiceId { get; set; }
-        public decimal PerCategoryPrice { get; set; }
-        public decimal PerServicePrice { get; set; }
-        public decimal PerKgPrice { get; set; }
-        public decimal PerKmPrice { get; set; }
+        public decimal PackageWeight { get; set; }
     
         public virtual CMS_DealerProductCategory CMS_DealerProductCategory { get; set; }
         public virtual CMS_DealerService CMS_DealerService { get; set; }
-        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
+        public virtual CMS_OrderInfo CMS_OrderInfo { get; set; }
     }
 }

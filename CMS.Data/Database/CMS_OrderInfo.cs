@@ -14,16 +14,19 @@ namespace CMS.Data.Database
     
     public partial class CMS_OrderInfo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CMS_OrderInfo()
+        {
+            this.CMS_ShipmentDetails = new HashSet<CMS_ShipmentDetails>();
+        }
+    
         public long OrderId { get; set; }
         public long DealerId { get; set; }
         public long UserId { get; set; }
-        public string FromName { get; set; }
         public string FromAddressLine { get; set; }
         public string FromAreaName { get; set; }
         public string FromCityName { get; set; }
         public int FromPinCode { get; set; }
-        public string FromMobileNo { get; set; }
-        public string FromEmail { get; set; }
         public string ToName { get; set; }
         public string ToAddressLine { get; set; }
         public string ToAreaName { get; set; }
@@ -31,18 +34,14 @@ namespace CMS.Data.Database
         public int ToPinCode { get; set; }
         public string ToMobileNo { get; set; }
         public string ToEmail { get; set; }
-        public decimal PackageWeight { get; set; }
-        public long DealerProductId { get; set; }
-        public long DealerServiceId { get; set; }
-        public decimal Price { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
         public virtual CMS_UserInfo CMS_UserInfo { get; set; }
-        public virtual CMS_DealerService CMS_DealerService { get; set; }
-        public virtual CMS_DealerProductCategory CMS_DealerProductCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CMS_ShipmentDetails> CMS_ShipmentDetails { get; set; }
+        public virtual CMS_DealerInfo CMS_DealerInfo { get; set; }
     }
 }

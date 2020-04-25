@@ -1,15 +1,95 @@
 ﻿@model IEnumerable<CMS.BusinessEntities.ViewModel.DealerViewModel>
 
 @{
-    Layout = "~/Areas/User/views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
 <!DOCTYPE html>
 
 <html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QuoteList</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="~/img/favicon.png" type="image/png" />
+    <title>Courier Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/nice-select.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/style1.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
 
+</head>
 <body>
-       <section class="quote-area ">
+    <header class="header_area ">
+
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg w-100">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="index.html">
+                        <img src="~/img/logofinal.png" alt="" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <div class="row w-100">
+                            <div class="col-lg-12 pr-lg-0">
+                                <ul class="nav navbar-nav ml-auto justify-content-end">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="@Url.Action("Index", "Home")#about">About</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="@Url.Action("Index", "Home")#services">Services</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="@Url.Action("Index", "Home")#contact">Contact</a>
+                                    </li>
+                                    <li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Menu</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Profile</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">My Orders</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Tracking</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="">Settings</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Logout</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="quote-area ">
         <div class="container">
             <div class="row justify-content-center text-left section-title-wrap">
                 <div class="col-lg-12 mt-4">
@@ -85,10 +165,7 @@
                         </th>*@
 <th></th>
                         </tr>
-                        @{ 
-                            List<decimal> prices = (List<decimal>)TempData["Price"];
-                            int i = 0;
-                        }
+
                         @foreach (var item in Model)
                         {
                             <tr>
@@ -112,7 +189,10 @@
                                     @Html.DisplayFor(modelItem => item.ServiceName)
                                 </td>
                                 <td>
-                                       @prices[i]
+                                   @foreach(var price in (IEnumerable<decimal>)TempData["Price"])
+                                   {
+                                       @price
+                                   }
                                 </td>
                                 @*<td>
                                 @Html.DisplayFor(modelItem => item.Email)
@@ -155,23 +235,14 @@
                             </td>*@
                                 <td>
                                     @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
 
-                                    @*<button class="main_btn text-uppercase" href="@Url.Action("AddressDetails","User",new { Area= "User"})" style="line-height:50px;padding: 0px 20px;">Book Now</button>*@
-                                    @*@Html.ActionLink("Book Now","AddressDetails",new { Area="User", Controller="User"},new {@class= "main_btn text-uppercase" , @style= "line-height:50px;padding: 0px 20px;" })*@
-                                    @*<a href="/User/User/AddressDetails?dealerid=@item.DealerId&price=@prices[i]" class="main_btn text-uppercase" style="line-height:50px;padding: 0px 20px;" >Book Now</a>*@
-                                    <form method="post" action="/User/User/Details?dealerid=@item.DealerId">
-                                        <input type="hidden" id="price" name="price" value="@prices[i]"/>
-                                        @*<a class="main_btn text-uppercase" style="line-height:50px;padding: 0px 20px;">Book Now</a>*@
-                                        <input type="submit" value="Book Now" class="main_btn text-uppercase" style="line-height:50px;padding: 0px 20px;" />
-                                    </form>
+                                    <button class="main_btn text-uppercase" href="@Url.Action("","")" style="line-height:50px;padding: 0px 20px;">Book Now</button>
+
                                 </td>
                                 
                             </tr>
-                            {
-                                i = i + 1;
-                            }
                         }
 
                     </table>
@@ -180,9 +251,66 @@
         </div>
     </section>
 
-                   <!--================ Optional JavaScript =================-->
+
+
+            <footer class="footer-area section_gap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h6>About Us</h6>
+                                <p>
+                                    If you own an Iphone, you’ve probably already worked out how much fun it is to use it to watch movies-it has that.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5  col-md-6 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h6>Newsletter</h6>
+                                <p>Stay update with our latest</p>
+                                <div class="" id="mc_embed_signup">
+                                    <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+                                        <input class="form-control" name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required="" type="email">
+                                        <button class="click-btn btn btn-default"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                        <div style="position: absolute; left: -5000px;">
+                                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                        </div>
+                                        <div class="info"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                            <div class="single-footer-widget">
+                                <h6>Follow Us</h6>
+                                <p>Let us be social</p>
+                                <div class="footer-social d-flex align-items-center">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="footer-text">
+
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!--================ End footer Area =================-->
+            <!--================ Optional JavaScript =================-->
             <!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
-            @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+            <script src="~/Scripts/jquery-3.2.1.min.js"></script>
             <script src="~/Scripts/popper.js"></script>
             <script src="~/Scripts/bootstrap.min.js"></script>
             <script src="~/Scripts/jquery.nice-select.min.js"></script>
@@ -192,6 +320,6 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
             <script src="~/Scripts/mail-script.js"></script>
-            <script src="~/Scripts/custom.js"></script>*@
+            <script src="~/Scripts/custom.js"></script>
 </body>
 </html>

@@ -1,5 +1,4 @@
 ﻿using CMS.Business.Interface;
-using CMS.BusinessEntities.ViewModel;
 using CMS.Data.Database;
 using System;
 using System.Collections.Generic;
@@ -26,17 +25,6 @@ namespace CMS.WebAPI.Controllers
                 return NotFound();                     
             }
             return Ok(Services);
-        }
-
-        [HttpGet]
-        public IHttpActionResult GetService(long serviceid)
-        {
-            ServiceViewModel Service = _serviceManager.GetService(serviceid);
-            if (Service == null)
-            {
-                return NotFound();
-            }
-            return Ok(Service);
         }
     }
 }

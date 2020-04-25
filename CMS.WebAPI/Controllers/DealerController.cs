@@ -19,7 +19,6 @@ namespace CMS.WebAPI.Controllers
             _dealerRepository = dealerRepository;
         }
 
-
         [HttpGet]
         public IHttpActionResult GetDealerCompanyList(long From, long To, long DealerProductId, long DealerServiceId)
         {
@@ -31,20 +30,6 @@ namespace CMS.WebAPI.Controllers
             else
             {
                 return Ok(DealerCompanies);
-            }
-        }
-
-        [HttpGet]
-        public IHttpActionResult GetOrders()
-        {
-            List<AddressDetailsViewModel> Orders = _dealerRepository.GetOrders();
-            if (Orders == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(Orders);
             }
         }
     }
