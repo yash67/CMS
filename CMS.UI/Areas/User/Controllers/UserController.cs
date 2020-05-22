@@ -17,6 +17,17 @@ namespace Project_Layout_Demo.Areas.User.Controllers
     {
         private SendEmail sendEmail = new SendEmail();
 
+
+        [HttpGet]
+        public ActionResult DashBoard()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult QuoteList()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<ActionResult> QuoteList(FormCollection collection)
         {
@@ -45,16 +56,7 @@ namespace Project_Layout_Demo.Areas.User.Controllers
             TempData["Price"] = prices;
             return View(dealers);
         }
-        [HttpGet]
-        public ActionResult DashBoard()
-        {
-            return View(); 
-        }
-        [HttpGet]
-        public ActionResult QuoteList()
-        {
-            return View();
-        }
+       
         [HttpGet]
         public ActionResult AddressDetails()
         {
