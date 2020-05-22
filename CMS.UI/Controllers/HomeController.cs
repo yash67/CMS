@@ -131,15 +131,23 @@ namespace Project_Layout_Demo.Controllers
             string addressurl = "";
             if (roletype == 2)
             {
-                 addressurl = "api/Dealer/AuthorizeDealer?Email=" + Email + "&Password=" + Password;
-
-                //Dealer
-                return Redirect("/Dealer/Dealer/Dashboard");
+                addressurl = "api/Dealer/AuthorizeDealer?email=" + Email + "&password=" + Password;
+                DealerViewModel dealer;
+                HttpResponseMessage Res = await GlobalVariables.client.GetAsync(addressurl);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var MainMEnuResponse = Res.Content.ReadAsStringAsync().Result;
+                    dealer = JsonConvert.DeserializeObject<DealerViewModel>(MainMEnuResponse);
+                    Session["Email"] = Email;
+                    Session["DId"] = dealer.DealerId;
+                    return RedirectToAction("Dashboard", "Dealer", new { area = "Dealer" });
+                }
+            
             }
             else
             {
                 addressurl = "api/User/AuthorizeUser?Email=" + Email + "&Password=" + Password;
-                UserViewModel user;
+                UserViewModel user=new UserViewModel();
                 HttpResponseMessage Res = await GlobalVariables.client.GetAsync(addressurl);
                 if (Res.IsSuccessStatusCode)
                 {

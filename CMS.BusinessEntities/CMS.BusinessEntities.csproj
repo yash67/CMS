@@ -47,6 +47,7 @@
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\CityViewModel.cs" />
     <Compile Include="ViewModel\DealerViewModel.cs" />
+    <Compile Include="ViewModel\QuotationViewModel.cs" />
     <Compile Include="ViewModel\ServiceViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>

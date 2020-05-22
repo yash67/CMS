@@ -104,12 +104,14 @@
     <Compile Include="Interface\ICategoryRepository.cs" />
     <Compile Include="Interface\ICityRepository.cs" />
     <Compile Include="Interface\IDealerRepository.cs" />
+    <Compile Include="Interface\IQuotationRepository.cs" />
     <Compile Include="Interface\IServiceRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\CityRepository.cs" />
     <Compile Include="Repository\DealerRepository.cs" />
+    <Compile Include="Repository\QuotationRepository.cs" />
     <Compile Include="Repository\ServiceRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>

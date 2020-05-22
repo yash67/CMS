@@ -13,31 +13,73 @@ namespace CMS.WebAPI.Controllers
     public class DealerController : ApiController
     {
         private IDealerManager _dealerManager;
-
         public DealerController(IDealerManager dealerManager)
         {
             _dealerManager = dealerManager;
         }
 
+        [HttpPost]
+        public IHttpActionResult InsertDealer(DealerViewModel dealerViewModel)
+        {
+            bool status = _dealerManager.InsertDealer(dealerViewModel);
+            if (status == false)
+            {
+                return Json("Dealer Details not Inserted");
+            }
+            return Ok();
+        }
 
         [HttpGet]
-        public IHttpActionResult GetDealerCompanyList(long From, long To, long DealerProductId, long DealerServiceId)
+        public IHttpActionResult CheckDealerEmail(string email)
         {
-            List<DealerViewModel> DealerCompanies = _dealerManager.GetDealerCompanyList(From,To,DealerProductId,DealerServiceId);
-            if (DealerCompanies == null)
+            if (email == null)
             {
-                return NotFound();
+                return BadRequest("invalid data");
             }
             else
             {
-                return Ok(DealerCompanies);
+                if (_dealerManager.CheckDealerEmail(email))
+                {
+                    return Ok();
+                }
+                return NotFound();
             }
         }
 
         [HttpGet]
-        public IHttpActionResult GetOrders()
+        public IHttpActionResult UpdateDealer(string email)
         {
-            List<AddressDetailsViewModel> Orders = _dealerManager.GetOrders();
+            bool status = _dealerManager.UpdateDealer(email);
+            if (status == false)
+            {
+                return BadRequest();
+            }
+            return Ok(status);
+        }
+
+        [HttpGet]
+        public IHttpActionResult AuthorizeDealer(string email, string password)
+        {
+            password.ToString().Trim('"');
+            if (email == null)
+            {
+                return BadRequest("invalid data");
+            }
+            else
+            {
+               CMS_DealerInfo dealer = _dealerManager.AuthorizeDealer(email, password);
+                if (dealer != null)
+                {
+                    return Ok(dealer);
+                }
+                return NotFound();
+            }
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetOrders(long id)
+        {
+            List<AddressDetailsViewModel> Orders = _dealerManager.GetOrders(id);
             if (Orders == null)
             {
                 return NotFound();

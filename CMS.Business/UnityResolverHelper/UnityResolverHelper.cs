@@ -18,6 +18,7 @@ namespace CMS.Business.UnityResolverHelper
             Container.RegisterType<ICityRepository, CityRepository>();
             Container.RegisterType<ICategoryRepository, CategoryRepository>();
             Container.RegisterType<IServiceRepository, ServiceRepository>();
+            Container.RegisterType<IQuotationRepository, QuotationRepository>();
             Container.RegisterType<IDealerRepository, DealerRepository>();
 
 

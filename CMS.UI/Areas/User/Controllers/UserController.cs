@@ -83,16 +83,16 @@ namespace Project_Layout_Demo.Areas.User.Controllers
                 decimal Weight = Convert.ToDecimal(collection["weight"]);
                 //ViewBag.Category = Category;
 
-                string addressurl = "api/Dealer/GetDealerCompanyList?From=" + From + "&To=" + To + "&DealerProductId=" + CategoryId + "&DealerServiceId=" + ServiceId;
+                string addressurl = "api/Quotation/GetDealerCompanyList?From=" + From + "&To=" + To + "&DealerProductId=" + CategoryId + "&DealerServiceId=" + ServiceId;
                 HttpResponseMessage Res = await GlobalVariables.client.GetAsync(addressurl);
-                List<DealerViewModel> dealers = new List<DealerViewModel>();
+                List<QuotationViewModel> dealers = new List<QuotationViewModel>();
                 if (Res.IsSuccessStatusCode)
                 {
                     var MainMEnuResponse = Res.Content.ReadAsStringAsync().Result;
-                    dealers = JsonConvert.DeserializeObject<List<DealerViewModel>>(MainMEnuResponse);
+                    dealers = JsonConvert.DeserializeObject<List<QuotationViewModel>>(MainMEnuResponse);
                 }
                 List<decimal> prices = new List<decimal>();
-                foreach (DealerViewModel dealer in dealers)
+                foreach (QuotationViewModel dealer in dealers)
                 {
                     decimal price = dealer.PerCategoryPrice + dealer.PerServicePrice + dealer.PerKmPrice + dealer.PerKgPrice * Weight;
                     prices.Add(price);

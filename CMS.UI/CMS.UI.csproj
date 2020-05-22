@@ -284,6 +284,8 @@
     <Content Include="Areas\User\Views\User\ShippingDetails.cshtml" />
     <Content Include="Areas\User\Views\User\DashBoard.cshtml" />
     <Content Include="Areas\Dealer\Views\Dealer\Dashboard.cshtml" />
+    <Content Include="Areas\Dealer\Views\Dealer\Registration.cshtml" />
+    <Content Include="Areas\Dealer\Views\Dealer\AddDealerCity.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\isotope-min.js" />
