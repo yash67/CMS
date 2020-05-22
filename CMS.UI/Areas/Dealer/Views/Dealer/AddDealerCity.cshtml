@@ -1,0 +1,17 @@
+﻿@model IEnumerable<CMS.BusinessEntities.ViewModel.CityViewModel>
+@{
+    Layout = null;
+}
+
+@foreach (var city in ViewBag.Cities)
+{
+    <div style="padding-right:15px;margin-left:200px">
+        <input id="@city.CityId" type="checkbox" name="skill" value="@city.CityId" />
+        <label for="@city.CityId">
+            @city.CityName
+        </label>
+    </div>
+}
+
+
+

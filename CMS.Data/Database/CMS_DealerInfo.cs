@@ -18,10 +18,10 @@ namespace CMS.Data.Database
         public CMS_DealerInfo()
         {
             this.CMS_DealerCity = new HashSet<CMS_DealerCity>();
-            this.CMS_DealerProductCategory = new HashSet<CMS_DealerProductCategory>();
             this.CMS_DealerRate = new HashSet<CMS_DealerRate>();
-            this.CMS_DealerService = new HashSet<CMS_DealerService>();
             this.CMS_OrderInfo = new HashSet<CMS_OrderInfo>();
+            this.CMS_DealerService = new HashSet<CMS_DealerService>();
+            this.CMS_DealerProductCategory = new HashSet<CMS_DealerProductCategory>();
         }
     
         public long DealerId { get; set; }
@@ -44,12 +44,12 @@ namespace CMS.Data.Database
         public virtual ICollection<CMS_DealerCity> CMS_DealerCity { get; set; }
         public virtual CMS_RoleMaster CMS_RoleMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CMS_DealerProductCategory> CMS_DealerProductCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CMS_DealerRate> CMS_DealerRate { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CMS_OrderInfo> CMS_OrderInfo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CMS_DealerService> CMS_DealerService { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CMS_OrderInfo> CMS_OrderInfo { get; set; }
+        public virtual ICollection<CMS_DealerProductCategory> CMS_DealerProductCategory { get; set; }
     }
 }

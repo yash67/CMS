@@ -8,8 +8,8 @@ namespace CMS.Common
 {
     public class Constant
     {
-        public string emailUsername = "evcharging.management00@gmail.com";
+        public string emailUsername = "cmsproject100@gmail.com";
 
-        public string emailPassword = "Evcharging@gateway";
+        public string emailPassword = "cms@1234";
     }
 }

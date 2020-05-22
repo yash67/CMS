@@ -10,6 +10,11 @@ namespace CMS.Business.Interface
 {
     public interface IDealerManager
     {
-        List<DealerViewModel> GetDealerCompanyList(long From, long To, long DealerProductId, long DealerServiceId);
+        bool InsertDealer(DealerViewModel dealerViewModel);
+        bool CheckDealerEmail(string email);
+        bool UpdateDealer(string email);
+        CMS_DealerInfo AuthorizeDealer(string email, string password);
+        List<AddressDetailsViewModel> GetOrders(long id);
+
     }
 }

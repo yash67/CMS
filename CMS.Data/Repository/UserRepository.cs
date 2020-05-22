@@ -68,6 +68,23 @@ namespace CMS.Data.Repository
             //}
             return result;
         }
-        
+
+        public bool InsertAddressDetails(CMS_OrderInfo OrderInfo)
+        {
+            bool Status = false;
+            cMSEntities.CMS_OrderInfo.Add(OrderInfo);
+            try
+            {
+                if (cMSEntities.SaveChanges() > 0)
+                {
+                    Status = true;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return Status;
+        }
     }
 }

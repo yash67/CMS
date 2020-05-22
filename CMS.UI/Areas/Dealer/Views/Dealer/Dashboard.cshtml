@@ -111,7 +111,7 @@
         <div class="container">
             <div class="row justify-content-center text-left section-title-wrap">
                 <div class="col-lg-12 mt-4">
-                    <h2 class="text-white">
+                    <h2 class="text-white" style="text-align:center">
                         Current Orders <br>
                     </h2>
                 </div>
@@ -149,6 +149,7 @@
                                     @Html.DisplayFor(modelItem => item.OrderId)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedDate)<br />
                                     @Html.DisplayFor(modelItem => item.FromName)<br />
                                     @Html.DisplayFor(modelItem => item.FromAddressLine)<br />
                                     @Html.DisplayFor(modelItem => item.FromAreaName)<br />
@@ -176,7 +177,7 @@
                                     @Html.DisplayFor(modelItem => item.Price)
                                 </td>
                                 <td>
-                                    <a class="main_btn text-uppercase" style="line-height:50px;padding: 0px 20px;">Place Order</a>
+                                    <a class="main_btn text-uppercase" style="line-height:50px;padding: 0px 20px;">Process Order</a>
                                 </td>
                                 @*<td>
 

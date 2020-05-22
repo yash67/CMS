@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace CMS.Business.Interface
 {
-    public interface ICityManager
+    public interface IQuotationManager
     {
-        List<CMS_CityMaster> GetCities();
-        CityViewModel GetCity(long cityid);
+        List<QuotationViewModel> GetDealerCompanyList(long From, long To, long DealerProductId, long DealerServiceId);
     }
 }

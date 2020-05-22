@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Project_Layout_Demo.Controllers
 {
@@ -130,15 +131,23 @@ namespace Project_Layout_Demo.Controllers
             string addressurl = "";
             if (roletype == 2)
             {
-                 addressurl = "api/Dealer/AuthorizeDealer?Email=" + Email + "&Password=" + Password;
-
-                //Dealer
-                return Redirect("/Dealer/Dealer/Dashboard");
+                addressurl = "api/Dealer/AuthorizeDealer?email=" + Email + "&password=" + Password;
+                DealerViewModel dealer;
+                HttpResponseMessage Res = await GlobalVariables.client.GetAsync(addressurl);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var MainMEnuResponse = Res.Content.ReadAsStringAsync().Result;
+                    dealer = JsonConvert.DeserializeObject<DealerViewModel>(MainMEnuResponse);
+                    Session["Email"] = Email;
+                    Session["DId"] = dealer.DealerId;
+                    return RedirectToAction("Dashboard", "Dealer", new { area = "Dealer" });
+                }
+            
             }
             else
             {
                 addressurl = "api/User/AuthorizeUser?Email=" + Email + "&Password=" + Password;
-                UserViewModel user;
+                UserViewModel user=new UserViewModel();
                 HttpResponseMessage Res = await GlobalVariables.client.GetAsync(addressurl);
                 if (Res.IsSuccessStatusCode)
                 {
@@ -162,20 +171,17 @@ namespace Project_Layout_Demo.Controllers
                     user = JsonConvert.DeserializeObject<UserViewModel>(MainMEnuResponse);
                     Session["Email"] = Email;
                     Session["UId"] = user.UserId;
-                    return Redirect("/User/User/Dashboard");
+                    return RedirectToAction("Dashboard","User",new { area = "User" });
                 }
                 else
                 {
                     TempData["Message"] = "Password is Wrong";
                 }
-
-
             }
             
             return View();
         }
-
-
+      
         public async Task<string> hash(string value)
         {
             //  System.Threading.Thread.Sleep(5000);
@@ -193,8 +199,6 @@ namespace Project_Layout_Demo.Controllers
             // var stringContent = new StringContent(JsonConvert.SerializeObject(userViewModel), Encoding.UTF8, "application/json");
             return value;
         }
-
-
         //[HttpGet]
         //public ActionResult forgotPassword()
         //{

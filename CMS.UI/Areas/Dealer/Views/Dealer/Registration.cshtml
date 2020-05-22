@@ -26,7 +26,6 @@
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/style1.css" rel="stylesheet" />
     <link href="~/Content/responsive.css" rel="stylesheet" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 
@@ -102,67 +101,115 @@
 
             <div class="card">
                 <div class="card-body register-card-body">
-                    <p class="login-box-msg">Login Here</p>
+                    <p class="login-box-msg">Register a new membership</p>
 
-                    <form action="/Home/Login" method="post">
-
+                    <form action="/Dealer/Dealer/Registration" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="DealerName" name="DealerName" placeholder="Dealer name">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="CompanyName" name="CompanyName" placeholder="Company name">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="Email" name="Email" placeholder="Email">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fa fa-envelope"></span>
+                                    <span class="fas fa-user"></span>
                                 </div>
                             </div>
                         </div>
+
+                        <span id="spanmsg"></span>
+                        @Html.ValidationMessage("Exits", new { @class = "text-danger text-color" })
+
                         <div class="input-group mb-3">
                             <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fa fa-key"></span>
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" placeholder="Retype password">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="CompanyAreaName" name="CompanyAreaName" placeholder="Company Area Name">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="CompanyCityName" name="CompanyCityName" placeholder="Company City Name">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="Pincode" name="Pincode" placeholder="Pincode">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="MobileNo" name="MobileNo" placeholder="MobileNo">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="RegistrationNo" name="RegistrationNo" placeholder="Company Registration No.">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class=" input-group mb-3">
-                            <select class="form-control " id="roletype" name="roletype" placeholder="Choose Role">
-                                <option disabled>--Select Role--</option>
-                                <option value="2">Dealer</option>
-                                <option value="3">User</option>
-                            </select>
-                        </div>
-
-
                         <div class="row justify-content-center">
-                            @*<div class="col-8">
-                    <div class="icheck-primary">
-                        <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                        <label for="agreeTerms">
-                            I agree to the <a href="#">terms</a>
-                        </label>
-                    </div>
-                </div>*@
-                            <!-- /.col -->
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block">Register</button>
                             </div>
                             <!-- /.col -->
                         </div>
                     </form>
 
                     @*<div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-primary">
-                <i class="fab fa-facebook mr-2"></i>
-                Sign up using Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
-                <i class="fab fa-google-plus mr-2"></i>
-                Sign up using Google+
-            </a>
-        </div>*@
+                            <p>- OR -</p>
+                            <a href="#" class="btn btn-block btn-primary">
+                                <i class="fab fa-facebook mr-2"></i>
+                                Sign up using Facebook
+                            </a>
+                            <a href="#" class="btn btn-block btn-danger">
+                                <i class="fab fa-google-plus mr-2"></i>
+                                Sign up using Google+
+                            </a>
+                        </div>*@
 
-                    <a href="/User/User/Registration" class="text-center ">Don't Have an Account? Register Here!</a><br />
-                    @*<a href="./ForgotPassword" class="text-center ">Forgot Password? </a>*@
+                    <a href="./Login" class="text-center ">Already Have an Account? Login Here!</a>
                 </div>
                 <!-- /.form-box -->
             </div><!-- /.card -->

@@ -6,11 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS.Business.Interface
+namespace CMS.Data.Interface
 {
-    public interface ICityManager
+    public interface IQuotationRepository
     {
-        List<CMS_CityMaster> GetCities();
-        CityViewModel GetCity(long cityid);
+        List<QuotationViewModel> GetDealerCompanyList(long From,long To,long DealerProductId,long DealerServiceId);
     }
 }

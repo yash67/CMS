@@ -10,5 +10,7 @@ namespace CMS.Data.Interface
    public interface ICityRepository
     {
         List<CMS_CityMaster> GetCities();
+        CMS_CityMaster GetCity(long cityid);
+
     }
 }

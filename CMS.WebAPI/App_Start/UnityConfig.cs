@@ -22,6 +22,7 @@ namespace CMS.WebAPI
             container.RegisterType<ICityManager, CityManager>();
             container.RegisterType<ICategoryManager, CategoryManager>();
             container.RegisterType<IServiceManager, ServiceManager>();
+            container.RegisterType<IQuotationManager, QuotationManger>();
             container.RegisterType<IDealerManager, DealerManager>();
 
 

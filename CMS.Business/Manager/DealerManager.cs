@@ -1,4 +1,5 @@
-﻿using CMS.Business.Interface;
+﻿using AutoMapper;
+using CMS.Business.Interface;
 using CMS.BusinessEntities.ViewModel;
 using CMS.Data.Database;
 using CMS.Data.Interface;
@@ -19,12 +20,41 @@ namespace CMS.Business.Manager
             _dealerRepository = dealerRepository;
         }
 
-      
-
-        public List<DealerViewModel> GetDealerCompanyList(long From, long To, long DealerProductId, long DealerServiceId)
+        public bool CheckDealerEmail(string email)
         {
-            List<DealerViewModel> Dealers = _dealerRepository.GetDealerCompanyList(From, To, DealerProductId, DealerServiceId);
-            return Dealers;
+            bool status = _dealerRepository.CheckDealerEmail(email);
+            return status;
         }
+
+        public bool InsertDealer(DealerViewModel dealerViewModel)
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<DealerViewModel, CMS_DealerInfo>();
+            });
+            IMapper mapper = config.CreateMapper();
+            var dealer = mapper.Map<DealerViewModel, CMS_DealerInfo>(dealerViewModel);
+            return _dealerRepository.InsertDealer(dealer);
+        }
+
+        public bool UpdateDealer(string email)
+        {
+            CMS_DealerInfo dealerInfo = _dealerRepository.GetDealer(email);
+            dealerInfo.IsActive = true;
+            bool status =_dealerRepository.UpdateDealer(dealerInfo);
+            return status;
+        }
+
+        public CMS_DealerInfo AuthorizeDealer(string email, string Password)
+        {
+            CMS_DealerInfo dealer = _dealerRepository.AuthorizeDealer(email, Password);
+            return dealer;
+        }
+
+        public List<AddressDetailsViewModel> GetOrders(long id)
+        {
+            List<AddressDetailsViewModel> Orders = _dealerRepository.GetOrders(id);
+            return Orders;
+        }
+
     }
 }
