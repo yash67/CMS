@@ -1,25 +1,30 @@
 ﻿@model IEnumerable<CMS.BusinessEntities.ViewModel.CityViewModel>
-
 @{
-    Layout = null;
+    Layout = "~/Areas/Dealer/Views/_LayoutPage1.cshtml";
 }
+    <html>
+    <body>
+        <section class="quote-area ">
+            <div class="container">
+                <div class="row justify-content-center text-left section-title-wrap">
+                    <div class="col-lg-12 mt-4">
+                        <h2 class="text-white" style="text-align:center">
+                            Select Cities <br>
+                        </h2>
+                    </div>
+                </div>
+                @foreach (var city in ViewBag.Cities)
+                {
+                    <div style="padding-right:15px;margin-left:200px">
+                        <input id="@city.CityId" type="checkbox" name="skill" value="@city.CityId" />
+                        <label for="@city.CityId">
+                            @city.CityName
+                        </label>
+                    </div>
+                }
+                </div>
+            </section>
+    </body>
+    </html>
 
-@using (@Html.BeginForm("AddDealerCity","Dealer", FormMethod.Post))
-{
-    foreach (var city in ViewBag.Cities)
-    {
-        <div style="padding-right:15px;margin-left:200px">
-            <input id="Cid" type="checkbox" name="CityId" value="@city.CityId" />
-            <label for="@city.CityId">
-                @city.CityName
-            </label>
-        </div>
-    }
 
-    <br />
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Submit" class="btn btn-default" />
-        </div>
-    </div>
-}
