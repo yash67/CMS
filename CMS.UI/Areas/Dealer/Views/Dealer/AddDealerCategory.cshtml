@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CMS.BusinessEntities.ViewModel.CategoryViewModel>
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("AddDealerCategory","Dealer",FormMethod.Post))
+{
+    foreach(var i in Model)
+    {
+        <input type="checkbox" name="CategoryId" value="@i.CategoryId"/>
+        @Html.DisplayFor(x=>i.CategoryName)
+    }
+
+    <input type="submit" value="Submit"/>
+}

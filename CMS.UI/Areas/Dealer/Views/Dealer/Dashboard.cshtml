@@ -65,13 +65,14 @@
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Set Up Business</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="">Add City</a>
+                                               <!-- <a class="nav-link" href="">Add City</a>-->
+                                                @Html.ActionLink("Add City", "AddDealerCity","Dealer")
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="">Add Product Category</a>
+                                                @Html.ActionLink("Add Category", "AddDealerCategory", "Dealer")
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="">Add Service Type</a>
+                                                @Html.ActionLink("Add Service", "AddDealerService", "Dealer")
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="">Add Decide Rates</a>

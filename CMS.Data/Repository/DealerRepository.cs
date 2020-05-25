@@ -63,6 +63,39 @@ namespace CMS.Data.Repository
             return dealer;
         }
 
+        public bool InsertDealerCities(List<CMS_DealerCity> dealerCities)
+        {
+            bool status = false;
+            _cMSEntities.CMS_DealerCity.AddRange(dealerCities);
+            if (_cMSEntities.SaveChanges() > 0)
+            {
+                status = true;
+            }
+            return status;
+        }
+
+        public bool InsertDealerCategories(List<CMS_DealerProductCategory> dealerCategories)
+        {
+            bool status = false;
+            _cMSEntities.CMS_DealerProductCategory.AddRange(dealerCategories);
+            if (_cMSEntities.SaveChanges() > 0)
+            {
+                status = true;
+            }
+            return status;
+        }
+
+        public bool InsertDealerServices(List<CMS_DealerService> dealerServices)
+        {
+            bool status = false;
+            _cMSEntities.CMS_DealerService.AddRange(dealerServices);
+            if (_cMSEntities.SaveChanges() > 0)
+            {
+                status = true;
+            }
+            return status;
+        }    
+
         public List<AddressDetailsViewModel> GetOrders(long id)
         {
             List<CMS_OrderInfo> Orders = _cMSEntities.CMS_OrderInfo.Where(x=>x.DealerId==id).ToList();

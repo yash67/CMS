@@ -16,6 +16,9 @@ namespace CMS.Data.Interface
         bool UpdateDealer(CMS_DealerInfo dealer);
         CMS_DealerInfo AuthorizeDealer(string Email, string Password);
         List<AddressDetailsViewModel> GetOrders(long id);
+        bool InsertDealerCities(List<CMS_DealerCity> dealerCities);
+        bool InsertDealerCategories(List<CMS_DealerProductCategory> dealerCategories);
+        bool InsertDealerServices(List<CMS_DealerService> dealerServices);
 
     }
 }

@@ -50,6 +50,36 @@ namespace CMS.Business.Manager
             return dealer;
         }
 
+        public bool InsertDealerCities(List<DealerCityViewModel> dealerCityViewModels)
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<DealerCityViewModel, CMS_DealerCity>();
+            });
+            IMapper mapper = config.CreateMapper();
+            var dealerCities = mapper.Map<List<DealerCityViewModel>, List<CMS_DealerCity>>(dealerCityViewModels);
+            return _dealerRepository.InsertDealerCities(dealerCities);
+        }
+
+        public bool InsertDealerCategories(List<DealerCategoryViewModel> dealerCategoryViewModels)
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<DealerCategoryViewModel, CMS_DealerProductCategory>();
+            });
+            IMapper mapper = config.CreateMapper();
+            var dealerCategories = mapper.Map<List<DealerCategoryViewModel>, List<CMS_DealerProductCategory>>(dealerCategoryViewModels);
+            return _dealerRepository.InsertDealerCategories(dealerCategories);
+        }
+
+        public bool InsertDealerServices(List<DealerServiceViewModel> dealerServiceViewModels)
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<DealerServiceViewModel, CMS_DealerService>();
+            });
+            IMapper mapper = config.CreateMapper();
+            var dealerServices = mapper.Map<List<DealerServiceViewModel>, List<CMS_DealerService>>(dealerServiceViewModels);
+            return _dealerRepository.InsertDealerServices(dealerServices);
+        }
+
         public List<AddressDetailsViewModel> GetOrders(long id)
         {
             List<AddressDetailsViewModel> Orders = _dealerRepository.GetOrders(id);

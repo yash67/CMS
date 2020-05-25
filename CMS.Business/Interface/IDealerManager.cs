@@ -15,6 +15,8 @@ namespace CMS.Business.Interface
         bool UpdateDealer(string email);
         CMS_DealerInfo AuthorizeDealer(string email, string password);
         List<AddressDetailsViewModel> GetOrders(long id);
-
+        bool InsertDealerCities(List<DealerCityViewModel> dealerCityViewModels);
+        bool InsertDealerCategories(List<DealerCategoryViewModel> dealerCategoryViewModels);
+        bool InsertDealerServices(List<DealerServiceViewModel> dealerServiceViewModels);
     }
 }

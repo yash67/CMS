@@ -46,6 +46,9 @@
     <Compile Include="ViewModel\AddressDetailsViewModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\CityViewModel.cs" />
+    <Compile Include="ViewModel\DealerCategoryViewModel.cs" />
+    <Compile Include="ViewModel\DealerCityViewModel.cs" />
+    <Compile Include="ViewModel\DealerServiceViewModel.cs" />
     <Compile Include="ViewModel\DealerViewModel.cs" />
     <Compile Include="ViewModel\QuotationViewModel.cs" />
     <Compile Include="ViewModel\ServiceViewModel.cs" />

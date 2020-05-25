@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CMS.BusinessEntities.ViewModel
 {
-    public class CityViewModel
+    public class DealerCityViewModel
     {
+        public long DealerCityId { get; set; }
+        public long DealerId { get; set; }
         public long CityId { get; set; }
-        public string CityName { get; set; }
-
+        public Nullable<bool> IsDeleted { get; set; }
     }
-
 }

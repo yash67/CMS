@@ -76,6 +76,39 @@ namespace CMS.WebAPI.Controllers
             }
         }
 
+        [HttpPost]
+        public IHttpActionResult InsertDealerCities(List<DealerCityViewModel> dealerCityViewModels)
+        {
+            bool status = _dealerManager.InsertDealerCities(dealerCityViewModels);
+            if (status == false)
+            {
+                return Json("DealerCities not Inserted");
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public IHttpActionResult InsertDealerCategories(List<DealerCategoryViewModel> dealerCategoryViewModels)
+        {
+            bool status = _dealerManager.InsertDealerCategories(dealerCategoryViewModels);
+            if (status == false)
+            {
+                return Json("DealerCategories not Inserted");
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public IHttpActionResult InsertDealerServices(List<DealerServiceViewModel> dealerServiceViewModels)
+        {
+            bool status = _dealerManager.InsertDealerServices(dealerServiceViewModels);
+            if (status == false)
+            {
+                return Json("DealerServices not Inserted");
+            }
+            return Ok();
+        }
+
         [HttpGet]
         public IHttpActionResult GetOrders(long id)
         {

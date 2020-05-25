@@ -1,17 +1,25 @@
 ﻿@model IEnumerable<CMS.BusinessEntities.ViewModel.CityViewModel>
+
 @{
     Layout = null;
 }
 
-@foreach (var city in ViewBag.Cities)
+@using (@Html.BeginForm("AddDealerCity","Dealer", FormMethod.Post))
 {
-    <div style="padding-right:15px;margin-left:200px">
-        <input id="@city.CityId" type="checkbox" name="skill" value="@city.CityId" />
-        <label for="@city.CityId">
-            @city.CityName
-        </label>
+    foreach (var city in ViewBag.Cities)
+    {
+        <div style="padding-right:15px;margin-left:200px">
+            <input id="Cid" type="checkbox" name="CityId" value="@city.CityId" />
+            <label for="@city.CityId">
+                @city.CityName
+            </label>
+        </div>
+    }
+
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
     </div>
 }
-
-
-

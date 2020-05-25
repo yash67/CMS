@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CMS.BusinessEntities.ViewModel.ServiceViewModel>
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("AddDealerService", "Dealer", FormMethod.Post))
+{
+    foreach (var i in Model)
+    {
+        <input type="checkbox" name="serviceId" value="@i.ServiceId" />
+        @Html.DisplayFor(x => i.ServiceName)
+    }
+    <input type="submit" value="Submit" />
+}
